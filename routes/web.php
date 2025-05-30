@@ -14,8 +14,18 @@ use App\Http\Controllers\SocialAuthController;
 |--------------------------------------------------------------------------
 */
 
-// Dashboard - hanya untuk user yang sudah login & email terverifikasi
+// Halaman utama
 Route::get('/', function () {
+    return view('Home/home');
+})->name('home');
+
+// Contoh halaman demo
+Route::get('/demo', function () {
+    return view('demo');
+})->name('demo');
+
+// Dashboard - hanya untuk user yang sudah login & email terverifikasi
+Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 

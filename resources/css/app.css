@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "@fontsource/open-sans/400.css"; /* Regular */
+@import "@fontsource/open-sans/600.css"; /* Semi-bold */
+@import "@fontsource/open-sans/700.css"; /* Bold */
+@import "@fontsource/open-sans/800.css"; /* Extra-bold */
+
+
+.font-bandung-vibes-watermark {
+    font-family: 'Open Sans', sans-serif; 
+    font-weight: 800; 
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.group:hover .group-hover-scale-105 {
+    transform: scale(1.05);
+}
+
+.group:hover .group-hover-text-brand-orange {
+    color: #f28c1d;
+}

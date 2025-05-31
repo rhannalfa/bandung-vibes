@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     // Halaman verifikasi email (jika belum verifikasi)
     Route::get('/email/verify', function () {
         return view('auth.verify-email');
-    })->name('verification.notice');
+    })->middleware('auth')->name('verification.notice');
 
     // Kirim ulang email verifikasi
     Route::post('/email/verification-notification', function (Request $request) {

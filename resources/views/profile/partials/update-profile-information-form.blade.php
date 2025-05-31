@@ -24,6 +24,12 @@
         </div>
 
         <div>
+            <x-admin.input-label for="nickname" :value="__('Nickname')" />
+            <x-admin.text-input id="nickname" name="nickname" type="text" class="mt-1 block w-full" :value="old('nickname', $user->nickname ?? '')" autocomplete="nickname" />
+            <x-admin.input-error class="mt-2" :messages="$errors->get('nickname')" />
+        </div>
+
+        <div>
             <x-admin.input-label for="email" :value="__('Email')" />
             <x-admin.text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-admin.input-error class="mt-2" :messages="$errors->get('email')" />

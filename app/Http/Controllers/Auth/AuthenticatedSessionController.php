@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -28,7 +29,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail()) {
+            return redirect()->route('verification.notice');
+        }
+
+        // Redirect berdasarkan role
+        switch ($user->role) {
+            case 'admin':
+                return redirect()->intended('/admin/dashboard');
+            case 'user':
+                return redirect()->intended('/dashboard');
+            default:
+                return redirect()->intended('/'); // fallback kalau role tidak dikenali
+        }
     }
 
     /**

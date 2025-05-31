@@ -20,7 +20,7 @@
 
     <!-- Kanan: Login (desktop) -->
     <div class="hidden md:block ml-auto">
-      <a href="#" class="text-sm font-semibold text-[#ffffff] hover:text-[#ffa03b]">Login</a>
+      <a href="{{ route('login') }}" class="text-sm font-semibold text-[#ffffff] hover:text-[#ffa03b]">Login</a>
     </div>
 
     <!-- Kanan: Hamburger Menu (mobile) -->
@@ -49,7 +49,7 @@
     <a href="#" class="inline-block px-4 py-2 text-sm font-semibold text-[#ffffff] hover:underline">Home</a>
     <a href="#" class="inline-block px-4 py-2 text-sm font-semibold text-[#ffffff] hover:underline">Gallery</a>
     <a href="#" class="inline-block px-4 py-2 text-sm font-semibold text-[#ffffff] hover:underline">About</a>
-    <a href="#" class="inline-block px-4 py-2 text-sm font-semibold text-[#ff9b2f] hover:text-[#ff9d1d]">Login</a>
+    <a href="{{ route('login') }}" class="inline-block px-4 py-2 text-sm font-semibold text-[#ff9b2f] hover:text-[#ff9d1d]">Login</a>
   </div>
 </nav>
 

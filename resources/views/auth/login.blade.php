@@ -5,22 +5,21 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <!-- Email Address -->
+        <!-- Email or Nickname -->
         <div>
-            <x-admin.input-label for="email" :value="__('Email')" />
-            <x-admin.text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-admin.input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-admin.input-label for="login" :value="__('Email or Nickname')" />
+            <x-admin.text-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')" required autofocus />
+            <x-admin.input-error :messages="$errors->get('login')" class="mt-2" />
         </div>
+
 
         <!-- Password -->
         <div class="mt-4">
             <x-admin.input-label for="password" :value="__('Password')" />
-
             <x-admin.text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
+                type="password"
+                name="password"
+                required autocomplete="current-password" />
             <x-admin.input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -32,6 +31,7 @@
             </label>
         </div>
 
+        <!-- Login and Forgot Password -->
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
@@ -42,17 +42,27 @@
             <x-admin.primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-admin.primary-button>
+        </div>
 
-        </div>  
-
-        <div class="flex items-center justify mt-4">
-            <x-admin.primary-button class="ms-3">
-                <a href="{{ url('/auth/google') }}" class="btn btn-google">Google</a>
+        <!-- Social Login -->
+        <div class="flex items-center justify-center mt-4 gap-4">
+            <x-admin.primary-button>
+                <a href="{{ url('/auth/google') }}" class="btn btn-google w-full h-full block text-center">Google</a>
             </x-admin.primary-button>
 
-            <x-admin.primary-button class="ms-3">
-                <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook">Facebook</a>
+            <x-admin.primary-button>
+                <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook w-full h-full block text-center">Facebook</a>
             </x-admin.primary-button>
-        </div>  
+        </div>
+
+        <!-- Register Link -->
+        <div class="flex justify-center mt-6">
+            <span class="text-sm text-gray-600 dark:text-gray-400">
+                {{ __("Don't have an account?") }}
+            </span>
+            <a href="{{ route('register') }}" class="ml-2 underline text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300">
+                {{ __('Register here') }}
+            </a>
+        </div>
     </form>
 </x-guest-layout>

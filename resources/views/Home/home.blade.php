@@ -15,7 +15,7 @@
 
     <x-navbar />
 
-<section class="relative min-h-screen mx-auto overflow-hidden flex flex-col z-0">
+{{-- <section class="relative min-h-screen mx-auto overflow-hidden flex flex-col z-0">
     <img
         id="hero-background-image" class="absolute inset-0 w-full h-full object-cover -z-20 transition-opacity duration-1000 ease-in-out" src="https://imgs.search.brave.com/kpkrmY4VmbA-PwjOVX6mDQ-D3ahPCOUmtq-ytKQM-1Y/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbmZv/YmFuZHVuZ2tvdGEu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDI0LzEwL1Bob3Rv/LV8tby1jcmVhdGl2/ZS1Qb2RvbW9yby1w/YXJrLnBuZw" alt="Bandung scenic background"
     />
@@ -84,7 +84,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 <section class="py-16 sm:py-24 bg-subtle-gray"  >
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">

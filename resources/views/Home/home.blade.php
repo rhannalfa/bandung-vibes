@@ -193,12 +193,12 @@
             </div>
         </div>
         <button aria-label="Healing Seru Lainnya" class="mt-12 bg-brand-orange text-white text-base font-semibold rounded-full px-10 py-3.5 shadow-lg hover:bg-orange-600 transition-all duration-300 hover:shadow-xl transform hover:scale-105">
-            Lihat Semua Wisata Bandung
+            <a href="{{ route('wisata.index') }}">Lihat Semua Wisata Bandung</a>
         </button>
     </div>
 </section>
 
-    <x-wisata.wisata />
+    <x-wisata.wisata/>
     <x-footer />
 
     <script>

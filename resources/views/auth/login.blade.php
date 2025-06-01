@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
@@ -56,6 +57,7 @@
                     fontFamily: {
                         'sans': ['Open Sans', 'sans-serif'],
                         'montserrat': ['Montserrat', 'sans-serif'],
+                        'playwrite': ['DynaPuff', 'system-ui'],
                     },
                     borderRadius: {
                         '40px': '40px', // Definisi untuk rounded-tr-[40px]
@@ -82,10 +84,10 @@
         <div class="hidden md:flex flex-col justify-between w-1/3 bg-gradient-to-b from-tripin-blue-light to-white rounded-tr-40px rounded-br-40px p-8 relative z-10">
             <div>
                 <div class="flex items-center space-x-1">
-                    <h1 class="font-montserrat font-extrabold text-white text-3xl select-none">
-                        TRIPIN
+                    <h1 class="font-playwrite text-white text-3xl select-none">
+                        BandungVibes
                     </h1>
-                    <img alt="Logo with orange sun and two blue palm trees with waves" class="w-10 h-10" draggable="false" height="40" src="https://storage.googleapis.com/a1aa/image/a5316701-fc15-47f5-640a-db92a1b2ca0e.jpg" width="40"/>
+                    {{-- <img alt="Logo with orange sun and two blue palm trees with waves" class="w-10 h-10" draggable="false" height="40" src="https://storage.googleapis.com/a1aa/image/a5316701-fc15-47f5-640a-db92a1b2ca0e.jpg" width="40"/> --}}
                 </div>
             </div>
             <div class="flex-grow"></div>
@@ -93,9 +95,9 @@
         </div>
 
         <img alt="Illustration of a man and woman with luggage, globe with location pin, paper plane, and airplane flying"
-     class="hidden md:block absolute top-[60%] left-[28%] -translate-x-1/2 w-[300px] lg:w-[320px] h-auto select-none pointer-events-none z-30"
+     class="hidden md:block absolute top-[50%] left-[28%] -translate-x-1/2 w-[300px] lg:w-[400px] h-auto select-none pointer-events-none z-30"
      draggable="false"
-     src="https://storage.googleapis.com/a1aa/image/8b37b242-a7fa-41b4-cb3d-c9369a894185.jpg"/>
+     src="https://cdni.iconscout.com/illustration/premium/thumb/student-go-to-study-abroad-illustration-download-in-svg-png-gif-file-formats--studying-global-education-international-people-activity-pack-illustrations-10300717.png"/>
 
 
         <div class="flex-1 flex flex-col justify-center px-6 sm:px-16 md:pl-24 md:pr-16 lg:px-32 xl:px-40 py-12 md:py-0 relative z-20 bg-white">

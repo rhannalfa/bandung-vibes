@@ -58,6 +58,7 @@
         .group:hover .group-hover-text-brand-orange {
             color: #f28c1d;
         }
+        
     </style>
 </head>
 <body class="bg-gray-200 text-brand-text-dark font-sans antialiased">

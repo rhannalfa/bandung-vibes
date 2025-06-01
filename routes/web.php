@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\WisataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,7 @@ use App\Http\Controllers\SocialAuthController;
 */
 
 // Halaman utama
-Route::get('/', function () {
-    return view('Home/home');
-})->name('home');
+Route::get('/', [WisataController::class, 'home'])->name('home');
 
 // Contoh halaman demo
 Route::get('/demo', function () {
@@ -28,6 +27,13 @@ Route::get('/demo', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+// Rute untuk daftar semua wisata
+Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
+
+// Rute untuk detail wisata tunggal
+Route::get('/wisata/{id}', [WisataController::class, 'show'])->name('wisata.show');
 
 // Group route untuk pengguna yang sudah login
 Route::middleware('auth')->group(function () {

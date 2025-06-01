@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nickname')->unique(); // 🔹 Tambahkan kolom nickname unik
+            $table->string('nickname')->unique() ->nullable(); // 🔹 Tambahkan kolom nickname unik
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

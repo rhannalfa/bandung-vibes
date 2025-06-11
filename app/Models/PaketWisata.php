@@ -19,8 +19,14 @@ class PaketWisata extends Model
         'harga_paket',
         'gambar_utama',
         'slug',
+        'gambar_lainnya',
+        'fasilitas',
     ];
 
+    protected $casts = [
+        'gambar_lainnya' => 'array',
+        'fasilitas' => 'array',
+    ];
     public function transaksi()
     {
         return $this->hasMany(Transaksi::class);

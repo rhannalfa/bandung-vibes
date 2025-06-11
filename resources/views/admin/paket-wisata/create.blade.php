@@ -35,6 +35,18 @@
                 <input type="file" name="gambar_utama" id="gambar_utama" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 @error('gambar_utama') border-red-500 @enderror">
                 @error('gambar_utama') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
             </div>
+            <div class="mb-4">
+                <label for="gambar_lainnya" class="block text-gray-700 text-sm font-bold mb-2">Foto Lainnya (Opsional):</label>
+                <input type="file" name="gambar_lainnya[]" id="gambar_lainnya" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 @error('gambar_lainnya.*') border-red-500 @enderror" multiple>
+                <p class="text-gray-600 text-xs italic">Anda dapat memilih beberapa foto.</p>
+                @error('gambar_lainnya.*') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
+            </div>
+            <div class="mb-4">
+                <label for="fasilitas" class="block text-gray-700 text-sm font-bold mb-2">Fasilitas (Satu item per baris):</label>
+                <textarea name="fasilitas" id="fasilitas" rows="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('fasilitas') border-red-500 @enderror">{{ old('fasilitas') }}</textarea>
+                <p class="text-gray-600 text-xs italic mt-1">Masukkan setiap fasilitas baru pada baris terpisah (tekan Enter untuk item baru).</p>
+                @error('fasilitas') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
+            </div>
             <div class="flex items-center justify-between">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Simpan Paket Wisata

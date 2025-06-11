@@ -30,6 +30,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/paket-wisata/{slug}', [PaketWisataController::class, 'showFrontend'])->name('detail-paket');
 
 // Rute untuk daftar semua wisata
 Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');

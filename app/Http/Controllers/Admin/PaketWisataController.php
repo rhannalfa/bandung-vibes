@@ -38,18 +38,40 @@ class PaketWisataController extends Controller
             'destinasi' => 'required|string|max:255',
             'durasi' => 'nullable|string|max:255',
             'harga_paket' => 'required|numeric|min:0',
-            'gambar_utama' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Max 2MB
+            // Perbaikan di sini: 'mimes:jpeg,png,jpg,gif,svg'
+            'gambar_utama' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            // Perbaikan di sini: 'mimes:jpeg,png,jpg,gif,svg'
+            'gambar_lainnya.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'fasilitas' => 'nullable|string', // Validasi input sebagai string biasa
         ]);
 
-        $data = $request->all();
+        $data = $request->except(['_token', '_method']);
+        $data['slug'] = Str::slug($request->nama_paket);
 
+        // Proses Upload Gambar Utama
         if ($request->hasFile('gambar_utama')) {
             $imageName = time().'.'.$request->gambar_utama->extension();
-            $request->gambar_utama->storeAs('public/paket-wisata', $imageName); // Simpan di storage/app/public/paket-wisata
-            $data['gambar_utama'] = 'paket-wisata/' . $imageName; // Simpan path relatif
+            $data['gambar_utama'] = $request->gambar_utama->storeAs('paket-wisata', $imageName, 'public');
+        } else {
+            $data['gambar_utama'] = null;
         }
 
-        $data['slug'] = Str::slug($request->nama_paket); // Generate slug
+        // Proses Upload Gambar Lainnya
+        $gambarLainPaths = [];
+        if ($request->hasFile('gambar_lainnya')) {
+            foreach ($request->file('gambar_lainnya') as $image) {
+                if ($image->isValid()) {
+                    $imageNameLain = uniqid('img_') . '.' . $image->extension();
+                    $gambarLainPaths[] = $image->storeAs('paket-wisata/lainnya', $imageNameLain, 'public');
+                }
+            }
+        }
+        $data['gambar_lainnya'] = $gambarLainPaths; // Akan di-encode JSON oleh $casts
+
+        // --- Proses Fasilitas ---
+        // Memecah string dari textarea menjadi array, dan membersihkan baris kosong
+        $data['fasilitas'] = array_filter(explode("\n", $request->input('fasilitas', '')));
+
 
         PaketWisata::create($data);
 
@@ -83,29 +105,61 @@ class PaketWisataController extends Controller
             'destinasi' => 'required|string|max:255',
             'durasi' => 'nullable|string|max:255',
             'harga_paket' => 'required|numeric|min:0',
-            'gambar_utama' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // Perbaikan di sini: 'mimes:jpeg,png,jpg,gif,svg'
+            'gambar_utama' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            // Perbaikan di sini: 'mimes:jpeg,png,jpg,gif,svg'
+            'gambar_lainnya.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'fasilitas' => 'nullable|string', // Validasi sebagai string biasa
         ]);
 
-        $data = $request->all();
+        $data = $request->except(['_token', '_method']);
+        $data['slug'] = Str::slug($request->nama_paket);
 
+        // Proses Upload Gambar Utama
         if ($request->hasFile('gambar_utama')) {
-            // Hapus gambar lama jika ada
-            if ($paket_wisatum->gambar_utama && Storage::exists('public/' . $paket_wisatum->gambar_utama)) {
-                Storage::delete('public/' . $paket_wisatum->gambar_utama);
+            if ($paket_wisatum->gambar_utama && Storage::disk('public')->exists($paket_wisatum->gambar_utama)) {
+                Storage::disk('public')->delete($paket_wisatum->gambar_utama);
             }
             $imageName = time().'.'.$request->gambar_utama->extension();
-            $request->gambar_utama->storeAs('public/paket-wisata', $imageName);
-            $data['gambar_utama'] = 'paket-wisata/' . $imageName;
+            $data['gambar_utama'] = $request->gambar_utama->storeAs('paket-wisata', $imageName, 'public');
         } else {
-            // Jika tidak ada gambar baru diupload, gunakan gambar lama
             $data['gambar_utama'] = $paket_wisatum->gambar_utama;
         }
 
-        $data['slug'] = Str::slug($request->nama_paket); // Perbarui slug jika nama berubah
+        // Proses Upload Gambar Lainnya (menambahkan ke yang sudah ada)
+        $gambarLainPaths = $paket_wisatum->gambar_lainnya ?: [];
+        if ($request->hasFile('gambar_lainnya')) {
+            foreach ($request->file('gambar_lainnya') as $image) {
+                if ($image->isValid()) {
+                    $imageNameLain = uniqid('img_') . '.' . $image->extension();
+                    $gambarLainPaths[] = $image->storeAs('paket-wisata/lainnya', $imageNameLain, 'public');
+                }
+            }
+        }
+        $data['gambar_lainnya'] = $gambarLainPaths;
+
+
+        // --- Proses Fasilitas ---
+        $data['fasilitas'] = array_filter(explode("\n", $request->input('fasilitas', '')));
+
 
         $paket_wisatum->update($data);
 
         return redirect()->route('admin.paket-wisata.index')->with('success', 'Paket wisata berhasil diperbarui.');
+    }
+
+    /**
+     * Menampilkan detail satu paket wisata untuk tampilan frontend.
+     */
+    public function showFrontend($slug)
+    {
+        // Mencari paket wisata berdasarkan slug.
+        // firstOrFail() akan melempar 404 jika tidak ditemukan, bagus untuk UX.
+        $paket = PaketWisata::where('slug', $slug)->firstOrFail();
+
+        // Mengirim objek $paket ke view
+        // Perbaikan di sini: path view ke frontend.paket-wisata-detail
+        return view('home.wisata.paket-wisata-detail', compact('paket'));
     }
 
     /**

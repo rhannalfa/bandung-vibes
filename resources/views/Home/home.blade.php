@@ -20,19 +20,19 @@
         id="hero-background-image" class="absolute inset-0 w-full h-full object-cover -z-20 transition-opacity duration-1000 ease-in-out" src="https://imgs.search.brave.com/kpkrmY4VmbA-PwjOVX6mDQ-D3ahPCOUmtq-ytKQM-1Y/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbmZv/YmFuZHVuZ2tvdGEu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDI0LzEwL1Bob3Rv/LV8tby1jcmVhdGl2/ZS1Qb2RvbW9yby1w/YXJrLnBuZw" alt="Bandung scenic background"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-brand-blue-dark/30 via-brand-blue-dark/50 to-brand-blue-dark/50 -z-20"></div>
-    
+
     <h2 class="absolute inset-0 flex justify-center items-center text-white font-extrabold text-[70px] xs:text-[80px] sm:text-[120px] md:text-[150px] opacity-20 select-none pointer-events-none -z-10 font-bandung-vibes-watermark">
         BandungVibes
     </h2>
 
     <div class="relative flex flex-col flex-grow w-full items-center px-4 py-10 z-10 pt-32 pb-8 sm:pt-24 sm:pb-0 sm:justify-center " >
-        
+
         <div class="flex flex-col items-center text-center w-full max-w-3xl mb-12 sm:mb-0" data-aos="fade-out">
             <span class="text-brand-orange font-semibold text-sm md:text-base tracking-widest mb-4 uppercase block">
                 Bandung Vibes
             </span>
             <h1 class="text-white font-extrabold text-4xl sm:text-5xl leading-tight sm:leading-snug relative [text-shadow:_2px_2px_8px_rgba(0,0,0,0.7)]">
-                HIDUP PERLU JALAN - JALAN YUK KABUR DULU!!<br class="hidden sm:block"/> 
+                HIDUP PERLU JALAN - JALAN YUK KABUR DULU!!<br class="hidden sm:block"/>
             </h1>
             <p class="text-gray-200 mt-6 text-base sm:text-lg max-w-xl mx-auto">
                 Temukan petualangan tak terlupakan di Bandung dan sekitarnya dengan paket wisata eksklusif kami.
@@ -45,7 +45,7 @@
 
         <div class="w-full mt-12 sm:absolute sm:bottom-0 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:max-w-screen-lg sm:xl:max-w-screen-xl sm:z-20 sm:mt-0 sm:mb-[-1px]" >
             <div class="bg-white/10 backdrop-blur-xl shadow-custom-deep grid grid-cols-1 sm:grid-cols-3 text-white rounded-xl sm:rounded-t-2xl overflow-hidden" data-aos="fade-up">
-                
+
                 <div class="px-4 py-5 sm:px-6 sm:py-6 text-center group">
                     <div class="flex flex-col items-center sm:items-start text-center sm:text-left">
                         <i class="fas fa-user-shield text-brand-orange text-2xl sm:text-3xl mb-2 sm:mb-3 transition-transform duration-300 group-hover:scale-110"></i>
@@ -86,19 +86,19 @@
     </div>
 </section>
 
-<x-wisata.wisata/>
+<x-wisata.wisata :paketUtama="$paketUtama" :paketLainnya="$paketLainnya" />
 <div>
-    
+
 </div>
 
-<section 
-    class="relative w-full h-[50vh] bg-cover bg-center bg-fixed flex items-center" 
+<section
+    class="relative w-full h-[50vh] bg-cover bg-center bg-fixed flex items-center"
     style="background-image: url('https://cdn.pixabay.com/photo/2021/12/02/01/22/city-6839388_1280.jpg');">
-    
+
     <div class="absolute inset-0 bg-gradient-to-r from-[#1e2f5a]/80 to-[#1e2f5a]/40"></div>
-    
+
     <div class="relative z-10 flex items-center justify-between w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16" data-aos="fade-in">
-        
+
         <div class="max-w-xl text-white">
             <h2 class="text-4xl sm:text-5xl font-bold leading-tight mb-4 drop-shadow-lg">
                 Jelajahi Pesona Kota Kembang
@@ -114,7 +114,7 @@
                 </svg>
             </a>
         </div>
-        
+
         <button aria-label="Play video" class="hidden sm:flex bg-white/30 hover:bg-white/40 backdrop-blur-sm rounded-full w-20 h-20 items-center justify-center transition-transform transform hover:scale-110 shadow-lg">
             <svg aria-hidden="true" class="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z"></path>

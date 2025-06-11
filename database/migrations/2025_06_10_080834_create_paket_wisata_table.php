@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('durasi')->nullable();
             $table->decimal('harga_paket', 10, 2);
             $table->string('gambar_utama')->nullable();
+            $table->longText('gambar_lainnya')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
         });

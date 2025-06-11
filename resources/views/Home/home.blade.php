@@ -31,8 +31,8 @@
             <span class="text-brand-orange font-semibold text-sm md:text-base tracking-widest mb-4 uppercase block">
                 Bandung Vibes
             </span>
-            <h1 class="text-white font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight sm:leading-snug relative [text-shadow:_2px_2px_8px_rgba(0,0,0,0.7)]">
-                SOLUSI PERJALANAN<br class="hidden sm:block"/> WISATA ANDA
+            <h1 class="text-white font-extrabold text-4xl sm:text-5xl leading-tight sm:leading-snug relative [text-shadow:_2px_2px_8px_rgba(0,0,0,0.7)]">
+                HIDUP PERLU JALAN - JALAN YUK KABUR DULU!!<br class="hidden sm:block"/> 
             </h1>
             <p class="text-gray-200 mt-6 text-base sm:text-lg max-w-xl mx-auto">
                 Temukan petualangan tak terlupakan di Bandung dan sekitarnya dengan paket wisata eksklusif kami.
@@ -86,119 +86,45 @@
     </div>
 </section>
 
-<section class="py-16 sm:py-24 bg-subtle-gray"  >
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-        <h2 class="text-dest-title font-bold text-3xl sm:text-4xl mb-3" data-aos="fade-in">
-            Paket Wisata Populer Bandung
-        </h2>
-        <p class="text-text-muted text-base sm:text-lg mb-12 sm:mb-16 max-w-2xl mx-auto" data-aos="fade-in">
-            Temukan ketenangan dan petualangan dengan paket wisata Bandung yang dirancang khusus untuk menyegarkan jiwa dan pikiran Anda di tengah pesona Parahyangan.
-        </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" data-aos="fade-in">
-            <div class="bg-white rounded-xl shadow-custom-medium p-6 flex flex-col text-center text-dest-title transition-all duration-300 ease-custom-ease hover:shadow-custom-deep hover:scale-105 transform group">
-                <div class="relative mx-auto mb-5">
-                    <div class="absolute inset-0 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full transform scale-105 blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                    <div class="relative bg-white rounded-full p-2 shadow-sm inline-block">
-                        <img alt="Staycation Bandung icon" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-full" src="https://storage.googleapis.com/a1aa/image/49468e1d-79a1-419a-07cc-fa39a6748906.jpg"/> </div>
-                </div>
-                <h3 class="font-semibold text-xl sm:text-2xl mb-2 group-hover:text-brand-orange transition-colors duration-300">
-                    Staycation Asyik
-                </h3>
-                <p class="text-sm text-text-muted mb-4 leading-relaxed min-h-[60px] sm:min-h-[84px]">
-                    Nikmati kenyamanan menginap di villa atau hotel terbaik Bandung. Cocok untuk keluarga maupun pasangan.
-                </p>
-                <p class="font-semibold text-base text-brand-orange mb-6">
-                    Mulai Rp 450.000/ Malam
-                </p>
-                <div class="w-full mt-auto space-y-2">
-                    <button class="bg-gray-200 text-gray-700 text-sm font-medium rounded-lg w-full py-2.5 shadow-sm hover:bg-gray-300 transition-colors duration-300">
-                        Lihat Fasilitas
-                    </button>
-                    <button class="bg-brand-orange text-white text-sm font-semibold rounded-lg w-full py-2.5 shadow-md hover:bg-orange-600 transition-colors duration-300 transform hover:scale-105">
-                        Booking Sekarang
-                    </button>
-                </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-custom-medium p-6 flex flex-col text-center text-dest-title transition-all duration-300 ease-custom-ease hover:shadow-custom-deep hover:scale-105 transform group">
-                <div class="relative mx-auto mb-5">
-                    <div class="absolute inset-0 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full transform scale-105 blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                    <div class="relative bg-white rounded-full p-2 shadow-sm inline-block">
-                        <img alt="Glamping Lembang Ciwidey icon" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-full" src="https://storage.googleapis.com/a1aa/image/f359fe1d-abbf-4f69-a108-41fe50685a10.jpg"/> </div>
-                </div>
-                <h3 class="font-semibold text-xl sm:text-2xl mb-2 group-hover:text-brand-orange transition-colors duration-300">
-                    Glamping Lembang/Ciwidey
-                </h3>
-                <p class="text-sm text-text-muted mb-4 leading-relaxed min-h-[60px] sm:min-h-[84px]">
-                    Rasakan sensasi berkemah mewah di Lembang atau Ciwidey, menyatu dengan keindahan alam tanpa meninggalkan kenyamanan.
-                </p>
-                <p class="font-semibold text-base text-brand-orange mb-6">
-                    Mulai Rp 150.000/ orang
-                </p>
-                <div class="w-full mt-auto space-y-2">
-                    <button class="bg-gray-200 text-gray-700 text-sm font-medium rounded-lg w-full py-2.5 shadow-sm hover:bg-gray-300 transition-colors duration-300">
-                        Lihat Fasilitas
-                    </button>
-                    <button class="bg-brand-orange text-white text-sm font-semibold rounded-lg w-full py-2.5 shadow-md hover:bg-orange-600 transition-colors duration-300 transform hover:scale-105">
-                        Booking Sekarang
-                    </button>
-                </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-custom-medium p-6 flex flex-col text-center text-dest-title transition-all duration-300 ease-custom-ease hover:shadow-custom-deep hover:scale-105 transform group">
-                <div class="relative mx-auto mb-5">
-                    <div class="absolute inset-0 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full transform scale-105 blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                    <div class="relative bg-white rounded-full p-2 shadow-sm inline-block">
-                        <img alt="Offroad Lembang icon" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-full" src="https://storage.googleapis.com/a1aa/image/82ec32f4-ec58-4fd3-1476-1a880cbe8e4c.jpg"/> </div>
-                </div>
-                <h3 class="font-semibold text-xl sm:text-2xl mb-2 group-hover:text-brand-orange transition-colors duration-300">
-                    Offroad Lembang
-                </h3>
-                <p class="text-sm text-text-muted mb-4 leading-relaxed min-h-[60px] sm:min-h-[84px]">
-                    Tantang adrenalin Anda menjelajahi jalur ekstrem Lembang dengan mobil 4x4 sambil menikmati pemandangan hutan pinus dan kebun teh.
-                </p>
-                <p class="font-semibold text-base text-brand-orange mb-6">
-                    Mulai Rp 250.000/ orang
-                </p>
-                <div class="w-full mt-auto space-y-2">
-                    <button class="bg-gray-200 text-gray-700 text-sm font-medium rounded-lg w-full py-2.5 shadow-sm hover:bg-gray-300 transition-colors duration-300">
-                        Lihat Fasilitas
-                    </button>
-                    <button class="bg-brand-orange text-white text-sm font-semibold rounded-lg w-full py-2.5 shadow-md hover:bg-orange-600 transition-colors duration-300 transform hover:scale-105">
-                        Booking Sekarang
-                    </button>
-                </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-custom-medium p-6 flex flex-col text-center text-dest-title transition-all duration-300 ease-custom-ease hover:shadow-custom-deep hover:scale-105 transform group">
-                <div class="relative mx-auto mb-5">
-                    <div class="absolute inset-0 bg-gradient-to-br from-brand-orange to-yellow-400 rounded-full transform scale-105 blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                    <div class="relative bg-white rounded-full p-2 shadow-sm inline-block">
-                        <img alt="Rafting Pangalengan icon" class="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-full" src="https://storage.googleapis.com/a1aa/image/8fb05f49-0976-4146-8bff-ab8daca8d88c.jpg"/> </div>
-                </div>
-                <h3 class="font-semibold text-xl sm:text-2xl mb-2 group-hover:text-brand-orange transition-colors duration-300">
-                    Arung Jeram Pangalengan
-                </h3>
-                <p class="text-sm text-text-muted mb-4 leading-relaxed min-h-[60px] sm:min-h-[84px]">
-                    Perkuat kerjasama tim melalui aktivitas outbound seru dan arung jeram menantang di sungai Palayangan, Pangalengan.
-                </p>
-                <p class="font-semibold text-base text-brand-orange mb-6">
-                    Mulai Rp 175.000/ orang
-                </p>
-                <div class="w-full mt-auto space-y-2">
-                    <button class="bg-gray-200 text-gray-700 text-sm font-medium rounded-lg w-full py-2.5 shadow-sm hover:bg-gray-300 transition-colors duration-300">
-                        Lihat Fasilitas
-                    </button>
-                    <button class="bg-brand-orange text-white text-sm font-semibold rounded-lg w-full py-2.5 shadow-md hover:bg-orange-600 transition-colors duration-300 transform hover:scale-105">
-                        Booking Sekarang
-                    </button>
-                </div>
-            </div>
+<x-wisata.wisata/>
+<div>
+    
+</div>
+
+<section 
+    class="relative w-full h-[50vh] bg-cover bg-center bg-fixed flex items-center" 
+    style="background-image: url('https://cdn.pixabay.com/photo/2021/12/02/01/22/city-6839388_1280.jpg');">
+    
+    <div class="absolute inset-0 bg-gradient-to-r from-[#1e2f5a]/80 to-[#1e2f5a]/40"></div>
+    
+    <div class="relative z-10 flex items-center justify-between w-full max-w-7xl mx-auto px-6 sm:px-12 md:px-16" data-aos="fade-in">
+        
+        <div class="max-w-xl text-white">
+            <h2 class="text-4xl sm:text-5xl font-bold leading-tight mb-4 drop-shadow-lg">
+                Jelajahi Pesona Kota Kembang
+            </h2>
+            <p class="text-base sm:text-lg mb-8 max-w-md drop-shadow-md">
+                Temukan keindahan alam yang memukau dan pengalaman tak terlupakan. Paket wisata terbaik Bandung menanti Anda.
+            </p>
+            <a href="{{ route('wisata.index') }}" class="inline-flex items-center bg-orange-500 text-white font-semibold tracking-wide py-3 px-6 rounded-lg text-base sm:text-lg hover:bg-orange-600 transition-transform transform hover:scale-105 shadow-xl">
+                LIHAT SEMUA PAKET
+                <svg aria-hidden="true" class="ml-2 w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
         </div>
-        <button aria-label="Healing Seru Lainnya" class="mt-12 bg-brand-orange text-white text-base font-semibold rounded-full px-10 py-3.5 shadow-lg hover:bg-orange-600 transition-all duration-300 hover:shadow-xl transform hover:scale-105">
-            <a href="{{ route('wisata.index') }}">Lihat Semua Wisata Bandung</a>
+        
+        <button aria-label="Play video" class="hidden sm:flex bg-white/30 hover:bg-white/40 backdrop-blur-sm rounded-full w-20 h-20 items-center justify-center transition-transform transform hover:scale-110 shadow-lg">
+            <svg aria-hidden="true" class="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"></path>
+            </svg>
         </button>
+
     </div>
 </section>
 
-    <x-wisata.wisata/>
+<x-ulasan />
     <x-footer />
 
     <script>

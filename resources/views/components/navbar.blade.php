@@ -4,7 +4,7 @@ $menuItemClasses = "hover:underline";
 $mobileMenuItemClasses = "inline-block px-4 py-2 text-sm font-semibold text-[#ffffff] hover:underline";
 $mobileLoginClasses = "inline-block px-4 py-2 text-sm font-semibold text-[#ff9b2f] hover:text-[#ff9d1d]";
 $desktopAuthLinkClasses = "text-sm font-semibold text-[#ffffff] hover:text-[#ffa03b]";
-$dropdownItemClasses = "block w-full text-left px-4 py-2 text-sm text-white hover:bg-[#ff9b2f]/70 focus:outline-none"; // Class baru untuk item dropdown
+$dropdownItemClasses = "block w-full text-left px-4 py-2 text-sm text-white hover:bg-[#ff9b2f]/70  focus:outline-none"; // Class baru untuk item dropdown
 @endphp
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -48,13 +48,13 @@ $dropdownItemClasses = "block w-full text-left px-4 py-2 text-sm text-white hove
         {{-- Dropdown Menu --}}
         <div
           id="user-menu-dropdown"
-          class="hidden absolute right-0 mt-2 w-48 bg-white/30 backdrop-blur-md rounded-md shadow-lg py-1 z-50 ring-1 ring-black ring-opacity-5"
+          class="hidden absolute right-0 mt-2 w-38 bg-white/30 backdrop-blur-md rounded-lg shadow-lg py-1 z-50 ring-1 ring-black ring-opacity-5"
         >
           {{-- Bisa tambahkan link lain di sini, misal ke profil --}}
           {{-- <a href="#" class="{{ $dropdownItemClasses }}">Profil Saya</a> --}}
-          <form method="POST" action="{{ route('logout') }}" class="block">
+          <form method="POST" action="{{ route('logout') }}" class="block ">
             @csrf
-            <button type="submit" class="{{ $dropdownItemClasses }} w-full">
+            <button type="submit" class="{{ $dropdownItemClasses }} w-full ">
               Logout
             </button>
           </form>

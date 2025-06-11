@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 
 window.addEventListener('load', () => {
   AOS.init({
-    duration: 500,          // durasi animasi AOS
+    duration: 800,          // durasi animasi AOS
     once: true,             // animasi hanya sekali saat scroll ke bawah
     delay: 200,             // delay animasi
     anchorPlacement: 'top-bottom', // posisi trigger animasi
@@ -22,3 +22,4 @@ import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
 Alpine.start();
+

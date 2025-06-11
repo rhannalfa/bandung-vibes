@@ -21,11 +21,10 @@ use App\Http\Controllers\Admin\TransaksiController;
 // Halaman utama
 Route::get('/', [WisataController::class, 'home'])->name('home');
 
-// Contoh halaman demo
-Route::get('/demo', function () {
-    return view('demo');
-})->name('demo');
-
+Route::get('/wisata/bandung', function () {
+    // Path view disesuaikan dengan struktur folder yang baru
+    return view('components.wisata.bandungKota');
+});
 // Dashboard - hanya untuk user yang sudah login & email terverifikasi
 Route::get('/dashboard', function () {
     return view('dashboard');

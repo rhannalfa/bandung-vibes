@@ -7,6 +7,8 @@
 @import "@fontsource/open-sans/600.css"; /* Semi-bold */
 @import "@fontsource/open-sans/700.css"; /* Bold */
 @import "@fontsource/open-sans/800.css"; /* Extra-bold */
+/* Menggunakan Font dari Google Fonts (Opsional, tapi sangat direkomendasikan) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 
 .font-bandung-vibes-watermark {
@@ -24,4 +26,95 @@ html {
 
 .group:hover .group-hover-text-brand-orange {
     color: #f28c1d;
+}
+
+    /* Custom scrollbar for testimonial text */
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 4px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 2px;
+    }
+ 
+
+    /* Mendefinisikan variabel warna agar mudah diubah */
+    :root { 
+        --brand-color: #f97316; /* Tailwind Orange 500 */
+        --brand-color-hover: #ea580c; /* Tailwind Orange 600 */
+        --title-color: #1e293b; /* Tailwind Slate 800 */
+        --muted-color: #64748b; /* Tailwind Slate 500 */
+        --subtle-gray-bg: #f8fafc; /* Tailwind Slate 50 */
+        --card-border-color: #e2e8f0; /* Tailwind Slate 200 */
+    }  
+
+    /* Mengaplikasikan font ke seluruh halaman */
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Mengganti kelas custom Anda dengan warna dari variabel */
+    .text-dest-title { color: var(--title-color); }
+    .text-text-muted { color: var(--muted-color); }
+    .bg-subtle-gray { background-color: var(--subtle-gray-bg); }
+    
+    .bg-dest-button { background-color: var(--brand-color); }
+    .hover\:bg-dest-button-hover:hover { background-color: var(--brand-color-hover); }
+    .text-dest-button { color: var(--brand-color); }
+    
+    
+  /* Menambahkan transisi yang halus untuk perpindahan testimoni */
+  #testimonial-container {
+    transition: transform 0.5s ease-in-out;
+  }
+  /* Style untuk scrollbar di dalam kartu testimoni */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #fBBF24 #F3F4F6; /* Warna thumb dan track scrollbar */
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #F3F4F6;
+    border-radius: 10px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #fBBF24;
+    border-radius: 10px;
+    border: 2px solid #F3F4F6;
+  }
+
+
+/* ... CSS Tailwind bawaan Anda ... */
+
+/* ====== KODE EFEK KILAU (SHIMMER EFFECT) ====== */
+
+/* Buat pseudo-element ::after pada container gambar.
+  Container ini adalah div yang memiliki class 'relative' dan 'overflow-hidden'.
+*/
+.group .relative.overflow-hidden::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  /* Mulai dari luar sisi kiri */
+  transform: translateX(-100%);
+  width: 75%;
+  height: 100%;
+  /* Efek kilau dibuat dengan gradient transparan ke putih lalu transparan lagi */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+  /* Z-index agar tampil di atas gambar dan overlay gradient hitam */
+  z-index: 10;
+  /* Atur kecepatan transisi animasi */
+  transition: transform 0.75s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Ketika parent (.group) di-hover, ubah posisi pseudo-element ::after
+  agar bergerak melintasi gambar ke sisi kanan.
+*/
+.group:hover .relative.overflow-hidden::after {
+  transform: translateX(100%);
 }

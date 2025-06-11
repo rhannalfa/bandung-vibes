@@ -31,19 +31,19 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
+        // Bagian ini untuk verifikasi email (biarkan saja jika Anda menggunakannya)
         if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail()) {
             return redirect()->route('verification.notice');
         }
 
-        // Redirect berdasarkan role
-        switch ($user->role) {
-            case 'admin':
-                return redirect()->intended('/');
-            case 'user':
-                return redirect()->intended('/');
-            default:
-                return redirect()->intended('/'); // fallback kalau role tidak dikenali
+        // --- Bagian yang perlu diubah ---
+        // Redirect berdasarkan role (menggunakan kolom 'is_admin')
+        if ($user->is_admin) { // Jika user adalah admin
+            return redirect()->intended(route('admin.dashboard')); // Arahkan ke dashboard admin
+        } else { // Jika user bukan admin (user biasa)
+            return redirect()->intended(route('home')); // Arahkan ke dashboard user biasa (biasanya '/dashboard')
         }
+        // --- Akhir bagian yang diubah ---
     }
 
     /**

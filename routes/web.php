@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\WisataController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PaketWisataController;
+use App\Http\Controllers\Admin\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,3 +76,15 @@ Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'callback'
 
 // Route auth default dari Laravel Breeze
 require __DIR__.'/auth.php';
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Dashboard Admin
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Pengelolaan Paket Wisata (menggunakan Route Resource untuk CRUD)
+    Route::resource('paket-wisata', PaketWisataController::class);
+
+    // Riwayat Transaksi Pembayaran
+    Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+    Route::get('transaksi/{transaksi}', [TransaksiController::class, 'show'])->name('transaksi.show'); // Opsional: detail transaksi
+});

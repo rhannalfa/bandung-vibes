@@ -14,7 +14,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-
+        // Panggil seeder AdminUserSeeder
+        $this->call([
+            AdminUserSeeder::class,
+            // Jika Anda punya seeder untuk PaketWisata dan Transaksi, panggil juga di sini
+            // PaketWisataSeeder::class,
+            // TransaksiSeeder::class,
+        ]);
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',

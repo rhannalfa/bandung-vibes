@@ -31,4 +31,16 @@ class PaketWisata extends Model
     {
         return $this->hasMany(Transaksi::class);
     }
+
+    // Relasi: Satu paket wisata bisa memiliki banyak ulasan
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class);
+    }
+
+     // Relasi Satu paket wisata bisa memiliki banyak pesanan
+    public function pesanan()
+    {
+        return $this->hasMany(Pesanan::class);
+    }
 }

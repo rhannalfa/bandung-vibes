@@ -169,9 +169,108 @@
 
                 {{-- Tombol Pesan Sekarang --}}
                 <button class="w-full bg-orange-500 text-white font-bold px-6 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-orange-500/30">
-                    Pesan Sekarang
+                    {{-- UBAH INI JADI LINK --}}
+                    <a href="{{ route('pesanan.create', $paket->id) }}" class="w-full h-full flex items-center justify-center">
+                        Pesan Sekarang
+                    </a>
                 </button>
             </div>
+        </div>
+    </div>
+    {{-- Bagian Ulasan dan Rating --}}
+    <div class="mt-12 bg-white p-6 rounded-2xl shadow-lg">
+        <h2 class="text-2xl font-bold text-slate-800 mb-6">Ulasan Pengguna</h2>
+
+        {{-- Form Ulasan Baru --}}
+        @auth {{-- Hanya tampilkan form jika user sudah login --}}
+            @php
+                // Cek apakah user sudah memberikan ulasan untuk paket ini
+                $hasReviewed = $paket->ulasan->where('user_id', Auth::id())->count() > 0;
+            @endphp
+
+            @if (!$hasReviewed) {{-- Tampilkan form jika user belum mengulas --}}
+                <div class="mb-8 p-4 border border-slate-200 rounded-lg">
+                    <h3 class="text-xl font-semibold text-slate-700 mb-4">Berikan Ulasan Anda</h3>
+
+                    @if (session('success'))
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <span class="block sm:inline">{{ session('success') }}</span>
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <span class="block sm:inline">{{ session('error') }}</span>
+                        </div>
+                    @endif
+                    @if ($errors->any())
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                            <ul class="list-disc list-inside">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('ulasan.store', $paket->id) }}" method="POST">
+                        @csrf
+                        <div class="mb-4">
+                            <label class="block text-slate-700 text-sm font-bold mb-2">Rating Bintang:</label>
+                            <div class="rating-stars flex flex-row-reverse justify-end">
+                                <input type="radio" id="star5" name="rating" value="5" {{ old('rating') == 5 ? 'checked' : '' }} /><label for="star5" title="Sempurna">5</label>
+                                <input type="radio" id="star4" name="rating" value="4" {{ old('rating') == 4 ? 'checked' : '' }} /><label for="star4" title="Sangat Bagus">4</label>
+                                <input type="radio" id="star3" name="rating" value="3" {{ old('rating') == 3 ? 'checked' : '' }} /><label for="star3" title="Bagus">3</label>
+                                <input type="radio" id="star2" name="rating" value="2" {{ old('rating') == 2 ? 'checked' : '' }} /><label for="star2" title="Cukup">2</label>
+                                <input type="radio" id="star1" name="rating" value="1" {{ old('rating') == 1 ? 'checked' : '' }} /><label for="star1" title="Buruk">1</label>
+                            </div>
+                            @error('rating') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="komentar" class="block text-slate-700 text-sm font-bold mb-2">Komentar Anda:</label>
+                            <textarea name="komentar" id="komentar" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-slate-700 leading-tight focus:outline-none focus:shadow-outline @error('komentar') border-red-500 @enderror">{{ old('komentar') }}</textarea>
+                            @error('komentar') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
+                        </div>
+
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                            Kirim Ulasan
+                        </button>
+                    </form>
+                </div>
+            @else
+                <div class="mb-8 p-4 bg-blue-50 border border-blue-200 text-blue-700 rounded-lg">
+                    <p class="font-semibold">Anda sudah memberikan ulasan untuk paket ini. Terima kasih!</p>
+                </div>
+            @endif
+        @else
+            <div class="mb-8 p-4 bg-yellow-50 border border-yellow-200 text-yellow-700 rounded-lg">
+                <p>Silakan <a href="{{ route('login') }}" class="font-semibold underline hover:text-yellow-800">login</a> untuk memberikan ulasan.</p>
+            </div>
+        @endauth
+
+        {{-- Daftar Ulasan yang Ada --}}
+        <div class="mt-8">
+            <h3 class="text-xl font-semibold text-slate-700 mb-4">Semua Ulasan ({{ $paket->ulasan->count() }})</h3>
+            @forelse ($paket->ulasan as $ulasan)
+                <div class="mb-6 p-4 border-b border-slate-200 last:border-b-0">
+                    <div class="flex items-center mb-2">
+                        <div class="font-bold text-slate-800 mr-3">{{ $ulasan->user->name ?? 'Pengguna Tidak Dikenal' }}</div>
+                        <div class="text-yellow-500">
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= $ulasan->rating)
+                                    <i class="fas fa-star"></i>
+                                @else
+                                    <i class="far fa-star"></i>
+                                @endif
+                            @endfor
+                        </div>
+                    </div>
+                    <p class="text-slate-600 mb-2">{{ $ulasan->komentar }}</p>
+                    <p class="text-sm text-slate-500">Diulas pada: {{ $ulasan->created_at->format('d M Y, H:i') }}</p>
+                </div>
+            @empty
+                <p class="text-slate-500">Belum ada ulasan untuk paket ini. Jadilah yang pertama memberikan ulasan!</p>
+            @endforelse
         </div>
     </div>
 </main>

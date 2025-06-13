@@ -20,7 +20,7 @@ $dropdownItemClasses = "block w-full text-left px-4 py-2 text-sm text-white hove
    <a href="#" class="{{ $menuItemClasses }}">Wisata</a>
    @guest
        @else
-       <a href="#" class="{{ $menuItemClasses }}">Pesanan</a>
+       <a href="{{ route('pesanan.history') }}" class="{{ $menuItemClasses }}">Pesanan</a>
    @endguest
    {{-- Add other links here as needed --}}
    @auth

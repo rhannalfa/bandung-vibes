@@ -11,6 +11,8 @@ use App\Http\Controllers\WisataController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PaketWisataController;
 use App\Http\Controllers\Admin\TransaksiController;
+use App\Http\Controllers\Admin\UlasanController;
+use App\Http\Controllers\Admin\PesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/paket-wisata/{slug}', [PaketWisataController::class, 'showFrontend'])->name('detail-paket');
+
+// --- Rute untuk Ulasan (membutuhkan autentikasi) ---
+Route::middleware(['auth'])->group(function () {
+    // Rute untuk menyimpan ulasan untuk paket wisata tertentu
+    // paket-wisata/{paket_wisata}/ulasan
+    // Gunakan parameter {paket_wisata} untuk Route Model Binding ke ID
+    Route::post('/paket-wisata/{paket_wisata}/ulasan', [UlasanController::class, 'store'])->name('ulasan.store');
+});
 
 // Rute untuk daftar semua wisata
 Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
@@ -55,6 +65,20 @@ Route::middleware('auth')->group(function () {
         $request->user()->sendEmailVerificationNotification();
         return back()->with('message', 'Link verifikasi telah dikirim!');
     })->middleware('throttle:6,1')->name('verification.send');
+
+
+    //Route Pesanan
+    //Menampilkan form pemesanan untuk paket wisata tertentu
+    Route::get('/paket-wisata/{paket_wisata}/pesan', [PesananController::class, 'create'])->name('pesanan.create');
+    // Memproses pengiriman form pemesanan
+    Route::post('/paket-wisata/{paket_wisata}/pesan', [PesananController::class, 'store'])->name('pesanan.store');
+    // Halaman sukses pemesanan
+    Route::get('/pesanan/sukses/{kode_pesanan}', [PesananController::class, 'success'])->name('pesanan.success');
+
+    //My-Order
+    Route::get('/my-orders', [PesananController::class, 'history'])->name('pesanan.history');
+    Route::get('/pesanan/pembayaran-berhasil/{kode_pesanan}', [PesananController::class, 'paymentSuccessConfirmation'])->name('pesanan.payment.success');
+    Route::put('/pesanan/{pesanan}/batalkan', [PesananController::class, 'cancel'])->name('pesanan.cancel');
 });
 
 // Proses klik link verifikasi email (langsung login otomatis)
@@ -87,4 +111,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Riwayat Transaksi Pembayaran
     Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::get('transaksi/{transaksi}', [TransaksiController::class, 'show'])->name('transaksi.show'); // Opsional: detail transaksi
+
+    //Ulasan
+    Route::get('ulasan', [UlasanController::class, 'index'])->name('ulasan.index');
+    Route::get('ulasan/{ulasan}', [UlasanController::class, 'show'])->name('ulasan.show');
+
+    //Pesanan
+    Route::get('pesanan', [PesananController::class, 'indexAdmin'])->name('pesanan.index');
+    Route::get('pesanan/{pesanan}', [PesananController::class, 'showAdmin'])->name('pesanan.show');
+    Route::put('pesanan/{pesanan}/update-status', [PesananController::class, 'updateStatus'])->name('pesanan.updateStatus');
 });

@@ -155,7 +155,11 @@ class PaketWisataController extends Controller
     {
         // Mencari paket wisata berdasarkan slug.
         // firstOrFail() akan melempar 404 jika tidak ditemukan, bagus untuk UX.
-        $paket = PaketWisata::where('slug', $slug)->firstOrFail();
+        $paket = PaketWisata::where('slug', $slug)
+                            ->with(['ulasan' => function($query) {
+                                $query->with('user')->latest(); // Urutkan ulasan dari terbaru, dan eager load user
+                            }])
+                            ->firstOrFail();
 
         // Mengirim objek $paket ke view
         // Perbaikan di sini: path view ke frontend.paket-wisata-detail

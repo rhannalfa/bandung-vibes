@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Wisata; // Import model Wisata jika Anda menggunakannya
 use App\Models\PaketWisata; // Import model Wisata jika Anda menggunakannya
+use App\Models\Ulasan;
 
 class WisataController extends Controller
 {
@@ -32,9 +33,16 @@ public function index()
 
         $paketUtama = $paketWisataPopuler->take(2); // Ambil 2 yang pertama
         $paketLainnya = $paketWisataPopuler->slice(2)->take(3);
+        // Data untuk bagian Ulasan Pelanggan
+        // Ambil ulasan terbaru, dengan user, dan filter yang punya komentar (opsional)
+        $ulasanPelanggan = Ulasan::with('user')
+                                 ->whereNotNull('komentar') // Hanya ulasan yang ada komentarnya
+                                 ->latest() // Urutkan dari terbaru
+                                 ->take(10) // Ambil 3 ulasan teratas untuk ditampilkan
+                                 ->get();
 
         // Mengirim data wisata ke view
-        return view('home.home', compact('paketUtama', 'paketLainnya'));
+        return view('home.home', compact('paketUtama', 'paketLainnya','ulasanPelanggan'));
     }
 
     public function show($id)

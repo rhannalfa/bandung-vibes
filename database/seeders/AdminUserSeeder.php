@@ -45,6 +45,15 @@ class AdminUserSeeder extends Seeder
             'email_verified_at' => Carbon::now(), // <-- Tambahkan baris ini juga
         ]);
 
+        User::create([
+            'name' => 'Rakhly Arief Putranto',
+            'nickname' => 'Rakel',
+            'email' => 'rakel@example.com',
+            'password' => Hash::make('password'),
+            'is_admin' => false,
+            'email_verified_at' => Carbon::now(), // <-- Tambahkan baris ini juga
+        ]);
+
         // Opsional: Jika Anda menggunakan UserFactory dan ingin mereka terverifikasi
         // Pastikan definisi factory Anda juga menambahkan 'email_verified_at'
         // User::factory(5)->create([

@@ -31,12 +31,43 @@
         {{-- Dua kartu utama --}}
         <div class="mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mb-12 md:mb-16" data-aos="fade-in">
             @forelse ($paketUtama as $paket)
-            <div class="bg-subtle-gray rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group">
+            <div class="paket-card relative bg-white rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group">
                 <div class="relative overflow-hidden">
+                    @php
+                        // Fungsi helper untuk menentukan URL gambar
+                        // Jika path gambar dimulai dengan 'assets/images/', gunakan asset()
+                        // Jika tidak (berarti dari Storage, seperti 'paket-wisata/gambar.jpg'), gunakan Storage::url()
+                        $getImageUrl = function($path) {
+                            if (Str::startsWith($path, 'assets/images/')) {
+                                return asset($path);
+                            }
+                            return Storage::url($path);
+                        };
+                    @endphp
+
+                    {{-- Tampilkan gambar utama jika ada --}}
                     @if ($paket->gambar_utama)
-                        <img alt="{{ $paket->nama_paket }}" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ Storage::url($paket->gambar_utama) }}"/>
+                        <img alt="{{ $paket->nama_paket }}" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ $getImageUrl($paket->gambar_utama) }}"/>
                     @else
-                        <img alt="No Image" class="w-full h-72 object-cover" src="https://via.placeholder.com/600x400?text=Gambar+Utama+Tidak+Tersedia"/>
+                        {{-- Jika tidak ada gambar utama, ambil gambar dari resources/assets/images sebagai fallback --}}
+                        @php
+                            $fallbackImages = [
+                                'assets/images/paket-wi/lainnya/ciwidey_1.jpg',
+                                'assets/images/paket-wi/lainnya/ciwidey_2.jpg',
+                                'assets/images/paket-wi/lainnya/kota_1.jpeg',
+                                'assets/images/paket-wi/lainnya/ciater-sari-ater.jpeg',
+                                'assets/images/paket-wi/lainnya/ciwidey-kawah-putih.jpeg',
+                                'assets/images/paket-wi/lainnya/sejarah-kuliner-kota.jpeg',
+                            ];
+                            $displayFallbackImage = !empty($fallbackImages) ? $fallbackImages[0] : null;
+                        @endphp
+
+                        @if ($displayFallbackImage)
+                            <img alt="{{ $paket->nama_paket ?? 'Gambar Default' }}" class="w-full h-72 object-cover rounded-lg" src="{{ asset($displayFallbackImage) }}"/>
+                        @else
+                            {{-- Fallback jika tidak ada gambar sama sekali (bahkan fallback hardcoded) --}}
+                            <img alt="Tidak Ada Gambar" class="w-full h-72 object-cover rounded-lg" src="https://via.placeholder.com/600x400?text=Gambar+Tidak+Tersedia"/>
+                        @endif
                     @endif
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div class="absolute top-4 right-4 bg-black/50 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-2">
@@ -87,10 +118,35 @@
             @forelse ($paketLainnya as $paket)
             <div class="bg-subtle-gray rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group">
                 <div class="relative overflow-hidden">
+                    @php
+                        $getImageUrl = function($path) {
+                            if (Str::startsWith($path, 'assets/images/')) {
+                                return asset($path);
+                            }
+                            return Storage::url($path);
+                        };
+                    @endphp
                     @if ($paket->gambar_utama)
-                        <img alt="{{ $paket->nama_paket }}" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ Storage::url($paket->gambar_utama) }}"/>
+                        <img alt="{{ $paket->nama_paket }}" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ $getImageUrl($paket->gambar_utama) }}"/>
                     @else
-                        <img alt="No Image" class="w-full h-60 object-cover" src="https://via.placeholder.com/400x300?text=Gambar+Utama+Tidak+Tersedia"/>
+                        {{-- Jika tidak ada gambar utama, gunakan gambar dari resources/assets/images sebagai fallback --}}
+                        @php
+                            $fallbackImages = [
+                                'assets/images/paket-wi/lainnya/ciwidey_1.jpg',
+                                'assets/images/paket-wi/lainnya/ciwidey_2.jpg',
+                                'assets/images/paket-wi/lainnya/kota_1.jpeg',
+                                'assets/images/paket-wisata/ciater-sari-ater.jpeg',
+                                'assets/images/paket-wi/lainnya/ciwidey-kawah-putih.jpeg',
+                                'assets/images/paket-wi/lainnya/sejarah-kuliner-kota.jpeg',
+                            ];
+                            $displayFallbackImage = !empty($fallbackImages) ? $fallbackImages[0] : null;
+                        @endphp
+                        @if ($displayFallbackImage)
+                            <img alt="{{ $paket->nama_paket ?? 'Gambar Default' }}" class="w-full h-60 object-cover rounded-lg" src="{{ asset($displayFallbackImage) }}"/>
+                        @else
+                            {{-- Fallback jika tidak ada gambar sama sekali (bahkan fallback hardcoded) --}}
+                            <img alt="Tidak Ada Gambar" class="w-full h-60 object-cover rounded-lg" src="https://via.placeholder.com/400x300?text=Gambar+Tidak+Tersedia"/>
+                        @endif
                     @endif
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div class="absolute top-4 right-4 bg-black/50 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-2">

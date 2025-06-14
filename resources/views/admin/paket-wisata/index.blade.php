@@ -25,6 +25,19 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse ($paketWisata as $item)
+                        @php
+                            // Helper function to determine the correct image URL
+                            // If the path starts with 'assets/images/', use asset() (for seeder data in public folder)
+                            // Otherwise (e.g., 'paket-wisata/image.jpg' from Storage), use Storage::url()
+                            $getImageUrl = function($path) {
+                                if (\Illuminate\Support\Str::startsWith($path, 'assets/images/')) {
+                                    return asset($path);
+                                }
+                                // Pastikan path untuk Storage::url() tidak dimulai dengan '/' jika sudah ada
+                                // Storage::url() akan menambahkan /storage/ secara otomatis
+                                return Storage::url(ltrim($path, '/'));
+                            };
+                        @endphp
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->nama_paket }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $item->destinasi }}</td>
@@ -32,7 +45,8 @@
                             <td class="px-6 py-4 whitespace-nowrap">Rp {{ number_format($item->harga_paket, 0, ',', '.') }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if ($item->gambar_utama)
-                                    <img src="{{ Storage::url($item->gambar_utama) }}" alt="{{ $item->nama_paket }}" class="h-12 w-12 object-cover rounded">
+                                    {{-- Menggunakan fungsi helper getImageUrl yang baru --}}
+                                    <img src="{{ $getImageUrl($item->gambar_utama) }}" alt="{{ $item->nama_paket }}" class="h-12 w-12 object-cover rounded">
                                 @else
                                     Tidak Ada Gambar
                                 @endif

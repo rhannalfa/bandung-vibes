@@ -36,6 +36,29 @@
         .hover\:bg-dest-button-hover:hover { background-color: #e66a00; } /* Darker Orange */
         .bg-subtle-gray { background-color: #f1f3f5; } /* Light Gray */
         .border-orange-200 { border-color: #ffc299; } /* Light Orange */
+
+        /* Styles for the rating stars input */
+        .rating-stars {
+            display: inline-flex;
+            direction: rtl; /* To make stars fill from right to left */
+        }
+        .rating-stars input {
+            display: none; /* Hide default radio buttons */
+        }
+        .rating-stars label {
+            font-size: 2rem; /* Size of the stars */
+            color: #ccc; /* Default star color */
+            cursor: pointer;
+            padding: 0 0.1rem;
+            transition: color 0.2s;
+        }
+        .rating-stars input:checked ~ label {
+            color: #ffc107; /* Filled star color */
+        }
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label {
+            color: #ffc107; /* Hover star color */
+        }
     </style>
 </head>
 <body>
@@ -65,38 +88,52 @@
         <div class="lg:col-span-2">
             {{-- Galeri Gambar Dinamis --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                @php
+                    // Helper function to determine the correct image URL
+                    // If the path starts with 'assets/images/', use asset() (for seeder data in public folder)
+                    // Otherwise (e.g., 'paket-wisata/image.jpg' from Storage), use Storage::url()
+                    $getImageUrl = function($path) {
+                        if (\Illuminate\Support\Str::startsWith($path, 'assets/images/')) {
+                            return asset($path);
+                        }
+                        // Pastikan path untuk Storage::url() tidak dimulai dengan '/' jika sudah ada
+                        // Storage::url() akan menambahkan /storage/ secara otomatis
+                        return Storage::url(ltrim($path, '/'));
+                    };
+
+                    // Mendekode gambar_lainnya dengan robust
+                    $gambarLainnyaArray = [];
+                    if (!empty($paket->gambar_lainnya)) {
+                        // Jika sudah array (karena model cast) langsung pakai
+                        if (is_array($paket->gambar_lainnya)) {
+                            $gambarLainnyaArray = $paket->gambar_lainnya;
+                        } elseif (is_string($paket->gambar_lainnya)) {
+                            // Coba decode JSON, jika gagal atau bukan array, fallback ke explode
+                            $decoded = json_decode($paket->gambar_lainnya, true);
+                            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                                $gambarLainnyaArray = $decoded;
+                            } else {
+                                // Fallback jika string tidak valid JSON tapi mungkin koma-separated
+                                $gambarLainnyaArray = array_filter(explode(',', $paket->gambar_lainnya));
+                            }
+                        }
+                    }
+                @endphp
+
                 {{-- Gambar Utama --}}
                 <div class="col-span-1 sm:col-span-2 rounded-2xl overflow-hidden shadow-lg group">
                     @if ($paket->gambar_utama)
-                        <img alt="{{ $paket->nama_paket }}" class="object-cover w-full h-96 group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ Storage::url($paket->gambar_utama) }}" />
+                        <img alt="{{ $paket->nama_paket }}" class="object-cover w-full h-96 group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ $getImageUrl($paket->gambar_utama) }}" />
                     @else
                         <img alt="Tidak Ada Gambar Utama" class="object-cover w-full h-96 bg-gray-200 flex items-center justify-center text-gray-500" src="https://via.placeholder.com/900x600?text=Gambar+Utama+Tidak+Tersedia" />
                     @endif
                 </div>
 
                 {{-- Gambar Lainnya --}}
-                {{-- PERBAIKAN DI SINI: Handle jika $gambar_lainnya masih string --}}
-                @php
-                    $gambarLainnyaArray = [];
-                    // Jika $paket->gambar_lainnya adalah string DAN tidak kosong, coba decode/explode
-                    if (!empty($paket->gambar_lainnya)) {
-                        if (is_string($paket->gambar_lainnya)) {
-                            // Coba decode JSON, jika gagal, pecah dengan koma
-                            $decoded = json_decode($paket->gambar_lainnya, true);
-                            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
-                                $gambarLainnyaArray = $decoded;
-                            } else {
-                                $gambarLainnyaArray = array_filter(explode(',', $paket->gambar_lainnya));
-                            }
-                        } elseif (is_array($paket->gambar_lainnya)) {
-                            $gambarLainnyaArray = $paket->gambar_lainnya;
-                        }
-                    }
-                @endphp
                 @if (count($gambarLainnyaArray) > 0)
                     @foreach ($gambarLainnyaArray as $gambar_path)
                         <div class="rounded-2xl overflow-hidden shadow-lg group">
-                            <img alt="Galeri {{ $paket->nama_paket }}" class="object-cover w-full h-56 group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ Storage::url($gambar_path) }}" />
+                            <img alt="Galeri {{ $paket->nama_paket }}" class="object-cover w-full h-56 group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ $getImageUrl($gambar_path) }}" />
                         </div>
                     @endforeach
                 @endif
@@ -110,7 +147,7 @@
                 <h3 class="font-bold text-slate-800 text-lg mb-4 pt-4 border-t border-slate-200">Destinasi Utama</h3>
                 <div class="space-y-3 text-slate-700">
                     {{-- Destinasi dinamis (dipecah dari string koma-separated) --}}
-                    @foreach(explode(',', $paket->destinasi) as $destinasi)
+                    @foreach(array_filter(explode(',', $paket->destinasi)) as $destinasi)
                         <p class="flex items-center"><i class="fas fa-check-circle text-orange-500/80 mr-3"></i>{{ trim($destinasi) }}</p>
                     @endforeach
                 </div>
@@ -139,21 +176,22 @@
                 <div class="mb-6">
                     <h4 class="font-semibold text-slate-800 mb-3">Fasilitas:</h4> {{-- Judul Fasilitas --}}
                     <ul class="space-y-2 text-sm text-slate-600">
-                        {{-- PERBAIKAN DI SINI: Handle jika $fasilitas masih string --}}
                         @php
+                            // Mendekode fasilitas dengan robust
                             $fasilitasArray = [];
-                            // Jika $paket->fasilitas adalah string DAN tidak kosong, coba decode/explode
                             if (!empty($paket->fasilitas)) {
-                                if (is_string($paket->fasilitas)) {
-                                    // Coba decode JSON, jika gagal, pecah dengan baris baru
+                                // Jika sudah array (karena model cast) langsung pakai
+                                if (is_array($paket->fasilitas)) {
+                                    $fasilitasArray = $paket->fasilitas;
+                                } elseif (is_string($paket->fasilitas)) {
+                                    // Coba decode JSON, jika gagal atau bukan array, fallback ke explode
                                     $decoded = json_decode($paket->fasilitas, true);
                                     if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
                                         $fasilitasArray = $decoded;
                                     } else {
+                                        // Fallback jika string tidak valid JSON tapi mungkin baris baru-separated
                                         $fasilitasArray = array_filter(explode("\n", $paket->fasilitas));
                                     }
-                                } elseif (is_array($paket->fasilitas)) {
-                                    $fasilitasArray = $paket->fasilitas;
                                 }
                             }
                         @endphp

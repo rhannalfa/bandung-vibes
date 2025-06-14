@@ -67,7 +67,9 @@
     {{-- Breadcrumbs dan Judul Halaman --}}
     <div class="mb-8">
         <nav class="text-sm font-medium text-slate-500 mb-2">
-            <a href="{{ route('home') }}" class="hover:text-orange-500 transition-colors">Paket Wisata</a>
+            <a href="{{ route('home') }}" class="hover:text-orange-500 transition-colors">Home</a>
+            <span class="mx-2">/</span>
+            <a href="{{ route('wisata.index') }}" class="hover:text-orange-500 transition-colors">Paket Wisata</a>
             <span class="mx-2">/</span>
             <span class="text-slate-800">Detail Paket</span>
         </nav>

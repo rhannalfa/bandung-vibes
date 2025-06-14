@@ -17,7 +17,7 @@ $dropdownItemClasses = "block w-full text-left px-4 py-2 text-sm text-white hove
  <div class="flex items-center justify-between md:justify-start relative w-full" data-aos="fade-in">
   <div class="hidden md:flex items-center space-x-6 text-sm font-semibold text-[#fffffffe]">
    <a href="{{ route('home') }}" class="{{ $menuItemClasses }}">Home</a>
-   <a href="#" class="{{ $menuItemClasses }}">Wisata</a>
+   <a href="{{ route('wisata.index') }}" class="{{ $menuItemClasses }}">Wisata</a>
    @guest
        @else
        <a href="{{ route('pesanan.history') }}" class="{{ $menuItemClasses }}">Pesanan</a>

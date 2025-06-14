@@ -27,9 +27,9 @@ class AdminUserSeeder extends Seeder
 
         // User Biasa (dengan nickname)
         User::create([
-            'name' => 'Pengguna Aplikasi',
-            'nickname' => 'pengguna_bv',
-            'email' => 'user@example.com',
+            'name' => 'Raihan Alfarizi',
+            'nickname' => 'rhannalfa',
+            'email' => 'rhan@example.com',
             'password' => Hash::make('password'),
             'is_admin' => false,
             'email_verified_at' => Carbon::now(), // <-- Tambahkan baris ini juga jika user biasa otomatis verified
@@ -37,9 +37,9 @@ class AdminUserSeeder extends Seeder
 
         // User Biasa tanpa nickname
         User::create([
-            'name' => 'Pengguna Tanpa Nickname',
-            'nickname' => null,
-            'email' => 'tanpa_nickname@example.com',
+            'name' => 'Raka Alfiansyah',
+            'nickname' => 'Vcols',
+            'email' => 'vcols@example.com',
             'password' => Hash::make('password'),
             'is_admin' => false,
             'email_verified_at' => Carbon::now(), // <-- Tambahkan baris ini juga
@@ -49,6 +49,42 @@ class AdminUserSeeder extends Seeder
             'name' => 'Rakhly Arief Putranto',
             'nickname' => 'Rakel',
             'email' => 'rakel@example.com',
+            'password' => Hash::make('password'),
+            'is_admin' => false,
+            'email_verified_at' => Carbon::now(), // <-- Tambahkan baris ini juga
+        ]);
+
+        User::create([
+            'name' => 'Yulia Lestari Ningsih',
+            'nickname' => 'Yulia LN',
+            'email' => 'yulia@example.com',
+            'password' => Hash::make('password'),
+            'is_admin' => false,
+            'email_verified_at' => Carbon::now(), // <-- Tambahkan baris ini juga
+        ]);
+
+        User::create([
+            'name' => 'Shandy Muhammad ',
+            'nickname' => 'Shandy',
+            'email' => 'Shandy@example.com',
+            'password' => Hash::make('password'),
+            'is_admin' => false,
+            'email_verified_at' => Carbon::now(), // <-- Tambahkan baris ini juga
+        ]);
+
+        User::create([
+            'name' => 'Raditya Raihan',
+            'nickname' => 'Radit Pro',
+            'email' => 'radit@example.com',
+            'password' => Hash::make('password'),
+            'is_admin' => false,
+            'email_verified_at' => Carbon::now(), // <-- Tambahkan baris ini juga
+        ]);
+
+        User::create([
+            'name' => 'Rizka Aulia',
+            'nickname' => 'Rizka A',
+            'email' => 'rizka@example.com',
             'password' => Hash::make('password'),
             'is_admin' => false,
             'email_verified_at' => Carbon::now(), // <-- Tambahkan baris ini juga

@@ -62,14 +62,11 @@
         @yield('content')
     </main>
 
-    {{-- Footer untuk Frontend (Anda bisa tambahkan komponen footer di sini) --}}
-    <footer class="bg-gray-800 text-white py-6 text-center text-sm mt-8">
-        <p>&copy; {{ date('Y') }} Bandung Vibes. Semua Hak Dilindungi.</p>
-    </footer>
-
+    
     <script src="/path/to/your/main.js"></script> {{-- Script utama Anda --}}
     @stack('scripts') {{-- Tambahkan ini --}}
-
+    
+    <x-footer />
 
 </body>
 </html>

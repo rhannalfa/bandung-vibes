@@ -3,7 +3,7 @@
 @section('title', 'Riwayat Pesanan Saya')
 
 @section('content')
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mb-32 mt-3 ">
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h1 class="text-2xl font-bold text-gray-800 mb-6">Riwayat Pesanan Saya</h1>
 
@@ -75,7 +75,7 @@
                                         <p>Jumlah Dewasa: {{ $pesanan->jumlah_dewasa }}</p>
                                         <p>Jumlah Anak: {{ $pesanan->jumlah_anak }}</p>
                                         <p>Harga per Dewasa: Rp {{ number_format($pesanan->paketWisata->harga_paket, 0, ',', '.') }}</p>
-                                        <p>Harga per Anak: Rp {{ number_format($pesanan->paketWisata->harga_paket * 0.75, 0, ',', '.') }} (contoh: 75% dari harga dewasa)</p>
+                                        <p>Harga per Anak: Rp {{ number_format($pesanan->paketWisata->harga_paket * 0.75, 0, ',', '.') }} (75% dari harga dewasa)</p>
                                         <p>Tanggal Pesan: {{ $pesanan->created_at->format('d M Y, H:i') }}</p>
                                     </div>
                                 </div>

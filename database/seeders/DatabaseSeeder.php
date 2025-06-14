@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminUserSeeder::class,
             PaketWisataSeeder::class,
+            UlasanSeeder::class,
             // Jika Anda punya seeder untuk PaketWisata dan Transaksi, panggil juga di sini
             // PaketWisataSeeder::class,
             // TransaksiSeeder::class,

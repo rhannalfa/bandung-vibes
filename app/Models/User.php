@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail; // Pastikan ini diimpor jika Anda menggunakan verifikasi email
 
-class User extends Authenticatable implements MustVerifyEmail // implements MustVerifyEmail jika Anda menggunakan verifikasi email
+class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -19,13 +19,8 @@ class User extends Authenticatable implements MustVerifyEmail // implements Must
      */
     protected $fillable = [
         'name',
-        'nickname',
         'email',
         'password',
-        'is_admin',
-        // Hapus 'role' jika Anda tidak menggunakan kolom 'role' secara eksplisit di database
-        // dan hanya mengandalkan 'is_admin' untuk multi-login.
-        // Jika Anda punya kolom 'role' di DB untuk tujuan lain, biarkan saja.
     ];
 
     /**
@@ -48,21 +43,6 @@ class User extends Authenticatable implements MustVerifyEmail // implements Must
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'is_admin' => 'boolean',
-            // Jika Anda memiliki kolom 'role' di DB dan ingin meng-cast-nya, tambahkan di sini juga
-            // 'role' => 'string', // Contoh jika 'role' adalah string dan ingin di-cast
         ];
-    }
-
-    // Relasi: Satu user bisa memiliki banyak ulasan
-    public function ulasan()
-    {
-        return $this->hasMany(Ulasan::class);
-    }
-
-        // Relasi Satu user bisa memiliki banyak pesanan
-    public function pesanan()
-    {
-        return $this->hasMany(Pesanan::class);
     }
 }

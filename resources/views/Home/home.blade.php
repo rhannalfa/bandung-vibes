@@ -37,10 +37,10 @@
             <p class="text-gray-200 mt-6 text-base sm:text-lg max-w-xl mx-auto">
                 Temukan petualangan tak terlupakan di Bandung dan sekitarnya dengan paket wisata eksklusif kami.
             </p>
-            <button class="mt-10 bg-brand-orange text-white text-sm sm:text-base font-semibold rounded-full px-8 py-3.5 flex items-center justify-center mx-auto space-x-2.5 hover:bg-brand-orange-darker transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+            <a href="#wisata" class="mt-10 bg-brand-orange text-white text-sm sm:text-base font-semibold rounded-full px-8 py-3.5 flex items-center justify-center mx-auto space-x-2.5 hover:bg-brand-orange-darker transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                 <i class="fas fa-paper-plane text-xs"></i>
                 <span>Jelajahi Paket</span>
-            </button>
+            </a>
         </div>
 
         <div class="w-full mt-12 sm:absolute sm:bottom-0 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:max-w-screen-lg sm:xl:max-w-screen-xl sm:z-20 sm:mt-0 sm:mb-[-1px]" >
@@ -86,9 +86,8 @@
     </div>
 </section>
 
-<x-wisata.wisata :paketUtama="$paketUtama" :paketLainnya="$paketLainnya" />
-<div>
-
+<div id="wisata">
+    <x-wisata.wisata :paketUtama="$paketUtama" :paketLainnya="$paketLainnya" />
 </div>
 
 <section

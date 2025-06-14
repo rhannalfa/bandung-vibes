@@ -118,3 +118,15 @@ html {
 .group:hover .relative.overflow-hidden::after {
   transform: translateX(100%);
 }
+ .rating-stars > input:checked ~ label, /* Ketika sebuah bintang dipilih, ubah warna semua label setelahnya */
+    .rating-stars:not(:checked) > label:hover, /* Hover pada bintang */
+    .rating-stars:not(:checked) > label:hover ~ label { /* Hover pada bintang dan semua setelahnya */
+        color: #f59e0b; /* Warna kuning dari Tailwind (yellow-400) */
+    }
+
+    .rating-stars > input:checked + label:hover, /* Hover pada bintang yang sudah dipilih */
+    .rating-stars > input:checked ~ label:hover,
+    .rating-stars > label:hover ~ input:checked ~ label,
+    .rating-stars > input:checked ~ label:hover ~ label {
+        color: #fbbf24; /* Warna kuning lebih terang (yellow-300) */
+    }

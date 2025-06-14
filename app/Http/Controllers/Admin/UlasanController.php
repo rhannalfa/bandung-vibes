@@ -14,7 +14,7 @@ class UlasanController extends Controller
     {
         // Ambil semua ulasan, eager load user dan paket wisata yang terkait
         // Urutkan dari yang terbaru (latest()) dan gunakan paginasi
-        $ulasan = Ulasan::with(['user', 'paketWisata'])->latest()->paginate(10);
+        $ulasan = Ulasan::with(['user', 'paketWisata'])->oldest()->paginate(10);
 
         return view('admin.ulasan.index', compact('ulasan'));
     }

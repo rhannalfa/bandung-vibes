@@ -11,7 +11,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class=" font-sans antialiased">
+<body class=" font-sans antialiased >
 
     <x-navbar /> {{-- Gunakan navbar yang sudah ada --}}
 <section class="relative mx-auto overflow-hidden flex flex-col z-0 sm:h-[60vh] md:h-[50vh] lg:h-[40vh]">

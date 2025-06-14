@@ -1,7 +1,7 @@
 {{-- resources/views/components/ulasan.blade.php --}}
 
 {{-- Bagian Ulasan Pelanggan Dinamis dengan Slider --}}
-<section class="bg-gray-50 max-w-full py-12" data-aos="fade-in">
+<section class="bg-gray-50 max-w-full py-16" data-aos="fade-up">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-6">
             <span class="inline-block bg-yellow-400 text-black text-xs font-semibold tracking-widest rounded-full px-4 py-1.5 uppercase">ULASAN PELANGGAN</span>
@@ -11,64 +11,59 @@
         </h2>
         <div class="relative px-12">
             <div id="testimonial-wrapper" class="overflow-hidden">
-                <div id="testimonial-container" class="grid grid-flow-col auto-cols-[100%] lg:auto-cols-[calc(33.3333%-16px)] gap-6">
+                {{-- ========================================================================= --}}
+                {{-- DIUBAH: Class 'xl:' dihapus agar maksimal 3 ulasan --}}
+                {{-- ========================================================================= --}}
+                <div id="testimonial-container" class="grid grid-flow-col auto-cols-[90%] sm:auto-cols-[calc(50%-12px)] lg:auto-cols-[calc(33.3333%-16px)] gap-6 transition-transform duration-500 ease-in-out">
                     @forelse ($ulasanPelanggan as $ulasan)
-                        <article class="bg-white border border-gray-200 rounded-xl shadow-lg p-6 flex flex-col testimonial-item transform hover:scale-105 transition-transform duration-300">
-                            <header class="flex items-center justify-between mb-3">
+                        <article class="bg-white border border-gray-200 rounded-2xl shadow-lg p-6 flex flex-col testimonial-item group transform hover:scale-105 transition-transform duration-300 cursor-grab">
+                            <header class="flex items-center justify-between mb-4">
                                 <div class="flex items-center space-x-4">
-                                    {{-- Foto Pengulas atau Avatar Inisial --}}
-                                    {{-- Jika Anda memiliki kolom profile_photo_url di User model, gunakan itu --}}
-                                    @if ($ulasan->user->profile_photo_url ?? false)
-                                        <img alt="Foto {{ $ulasan->user->name ?? 'Pengguna' }}" class="w-12 h-12 rounded-full object-cover ring-2 ring-yellow-300" src="{{ $ulasan->user->profile_photo_url }}">
-                                    @else
-                                        {{-- Avatar inisial jika tidak ada foto profil --}}
-                                        <div class="w-12 h-12 rounded-full bg-{{ ['red', 'green', 'blue', 'purple', 'yellow'][array_sum(str_split(ord($ulasan->user->name[0] ?? 'A')))%6] }}-600 flex items-center justify-center text-white font-bold text-xl ring-2 ring-yellow-300">
-                                            {{ substr($ulasan->user->name ?? '?', 0, 1) }}
+                                    <div class="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center ring-2 ring-yellow-300 group-hover:ring-yellow-400 transition-all">
+                                        <svg class="w-8 h-8 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-base font-semibold text-gray-900">{{ $ulasan->user->name ?? 'Pengguna Dihapus' }}</p>
+                                        <div class="flex items-center text-yellow-400 mt-1">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                <i class="{{ $i <= $ulasan->rating ? 'fas fa-star' : 'far fa-star' }}"></i>
+                                            @endfor
                                         </div>
-                                    @endif
-                                    <span class="text-base font-semibold text-gray-900">{{ $ulasan->user->name ?? 'Pengguna Dihapus' }}</span>
+                                    </div>
                                 </div>
                             </header>
-                            <div class="flex items-center mb-2 text-yellow-400">
-                                {{-- Rating Bintang --}}
-                                @for ($i = 1; $i <= 5; $i++)
-                                    @if ($i <= $ulasan->rating)
-                                        <i class="fas fa-star"></i>
-                                    @else
-                                        <i class="far fa-star"></i>
-                                    @endif
-                                @endfor
+                            <div class="relative mt-2 flex-grow">
+                                <svg class="absolute top-0 left-0 w-8 h-8 text-gray-100 transform -translate-x-2 -translate-y-2" fill="currentColor" viewBox="0 0 32 32">
+                                  <path d="M9.333 8h-2.667c-1.473 0-2.667 1.193-2.667 2.667v8c0 1.473 1.194 2.667 2.667 2.667h2.667v-5.333h-2.667v-2.667h5.333v8c0 1.473-1.193 2.667-2.667 2.667h-2.667c-2.945 0-5.333-2.388-5.333-5.333v-8c0-2.945 2.388-5.333 5.333-5.333h2.667v5.333zM25.333 8h-2.667c-1.473 0-2.667 1.193-2.667 2.667v8c0 1.473 1.194 2.667 2.667 2.667h2.667v-5.333h-2.667v-2.667h5.333v8c0 1.473-1.193 2.667-2.667 2.667h-2.667c-2.945 0-5.333-2.388-5.333-5.333v-8c0-2.945 2.388-5.333 5.333-5.333h2.667v5.333z"></path>
+                                </svg>
+                                <p class="text-gray-600 text-sm leading-relaxed overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 max-h-[4.5rem] pr-2 z-10 relative">
+                                    {{ $ulasan->komentar }}
+                                </p>
                             </div>
-                            <p class="text-gray-600 text-sm leading-relaxed overflow-y-auto scrollbar-thin max-h-[100px] pr-2">
-                                "{{ Str::limit($ulasan->komentar, 150) }}"
-                            </p>
-                            {{-- Informasi Tambahan (opsional) --}}
-                            <p class="text-xs text-slate-400 mt-2">
-                                diulas untuk {{ $ulasan->paketWisata->nama_paket ?? 'Paket Tidak Diketahui' }} pada {{ $ulasan->created_at->format('d M Y') }}
+                            <p class="text-xs text-gray-500 mt-2 pt-2 border-t border-gray-100">
+                                Diulas untuk <strong>{{ $ulasan->paketWisata->nama_paket ?? 'Paket Wisata' }}</strong>
+                                <br>
+                                Pada {{ $ulasan->created_at->format('d M Y') }}
                             </p>
                         </article>
                     @empty
-                        <div class="col-span-full text-center text-gray-500 p-8">
-                            Belum ada ulasan pelanggan yang ditampilkan.
+                        <div class="col-span-full text-center text-gray-500 p-12 bg-white rounded-lg shadow-md">
+                            <p class="text-lg">Belum ada ulasan untuk ditampilkan.</p>
+                            <p class="text-sm mt-2">Jadilah yang pertama memberikan ulasan!</p>
                         </div>
                     @endforelse
                 </div>
             </div>
+
             {{-- Tombol Navigasi Slider --}}
-            <button
-                id="prev-btn"
-                class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white rounded-full p-2.5 shadow-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 z-10"
-                aria-label="Previous Testimonial"
-            >
+            <button id="prev-btn" class="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 transition-all duration-300 z-20" aria-label="Ulasan Sebelumnya">
                 <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
             </button>
-            <button
-                id="next-btn"
-                class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-full p-2.5 shadow-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300 z-10"
-                aria-label="Next Testimonial"
-            >
+            <button id="next-btn" class="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 transition-all duration-300 z-20" aria-label="Ulasan Berikutnya">
                 <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
@@ -77,155 +72,143 @@
     </div>
 </section>
 
+{{-- ========================================================================= --}}
+{{-- DIUBAH: Script JavaScript dengan fungsi getVisibleItems yang disederhanakan --}}
+{{-- ========================================================================= --}}
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    const wrapper = document.getElementById("testimonial-wrapper");
     const container = document.getElementById("testimonial-container");
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
-    let items = document.querySelectorAll(".testimonial-item"); // Menggunakan let untuk items agar bisa diupdate
+    const items = document.querySelectorAll(".testimonial-item");
 
     if (!container || !prevBtn || !nextBtn || items.length === 0) {
-        console.error("Elemen testimoni tidak ditemukan atau tidak ada item testimoni.");
         if(prevBtn) prevBtn.style.display = 'none';
         if(nextBtn) nextBtn.style.display = 'none';
         return;
     }
 
     let currentIndex = 0;
-    let totalItems = items.length;
+    const totalItems = items.length;
     let isDragging = false;
     let startPos = 0;
     let currentTranslate = 0;
     let prevTranslate = 0;
-    let animationId; // Untuk requestAnimationFrame
-
+    let animationID;
+    
+    // FUNGSI INI DIUBAH - Kondisi untuk 4 item dihapus
     function getVisibleItems() {
-        if (window.innerWidth >= 1024) return 10; // 3 item untuk layar lg (desktop)
-        return 1; // 1 item untuk layar di bawahnya (tablet & mobile)
+        if (window.innerWidth >= 1024) return 3; // Layar LG ke atas (3 ulasan)
+        if (window.innerWidth >= 640) return 2;  // Layar SM (2 ulasan)
+        return 1; // Layar Mobile (1 ulasan)
     }
 
-    // Fungsi untuk mengatur posisi slider berdasarkan currentIndex
     function setPositionByIndex() {
         const visibleItems = getVisibleItems();
-        if (!container.parentElement) return;
+        if (!wrapper) return;
 
-        const gap = parseInt(window.getComputedStyle(container).columnGap) || 24; // Mengambil nilai gap dari CSS
-        const containerWidth = container.parentElement.offsetWidth;
-        // Menghitung lebar item berdasarkan jumlah item yang terlihat dan gap
-        const itemWidth = (containerWidth - gap * (visibleItems - 1)) / visibleItems;
+        if (totalItems <= visibleItems) {
+            container.style.transform = `translateX(0px)`;
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            container.style.justifyContent = 'center';
+            return;
+        }
+        
+        container.style.justifyContent = 'flex-start';
 
-        currentTranslate = -(itemWidth + gap) * currentIndex;
-        setSliderTransform(currentTranslate); // Terapkan transform
+        const gap = parseInt(window.getComputedStyle(container).gap) || 24;
+        const itemWidth = items[0].offsetWidth;
+        
+        currentIndex = Math.max(0, Math.min(currentIndex, totalItems - visibleItems));
+        
+        currentTranslate = -currentIndex * (itemWidth + gap);
+        container.style.transform = `translateX(${currentTranslate}px)`;
+        
+        updateNavButtons();
+    }
 
-        // Mengatur visibilitas tombol navigasi
+    function updateNavButtons() {
+        const visibleItems = getVisibleItems();
         prevBtn.style.display = currentIndex > 0 ? "flex" : "none";
         nextBtn.style.display = currentIndex < totalItems - visibleItems ? "flex" : "none";
     }
-
-    // Fungsi untuk menerapkan transform CSS ke slider
-    function setSliderTransform(translate) {
-        container.style.transform = `translateX(${translate}px)`;
+    
+    function slide(direction) {
+        const visibleItems = getVisibleItems();
+        const step = 1;
+        
+        currentIndex += direction * step;
+        currentIndex = Math.max(0, Math.min(currentIndex, totalItems - visibleItems));
+        setPositionByIndex();
     }
 
-    // --- Event Handlers untuk Dragging (Mouse & Touch) ---
-    function touchStart(event) {
+    // --- Sisa JavaScript tidak ada perubahan ---
+    function dragStart(event) {
+        if (totalItems <= getVisibleItems()) return;
         isDragging = true;
-        // Dapatkan posisi X awal (untuk mouse atau sentuhan pertama)
         startPos = event.type.includes('mouse') ? event.clientX : event.touches[0].clientX;
-        container.style.cursor = 'grabbing'; // Ubah kursor saat dragging
-        animationId = requestAnimationFrame(animation); // Mulai loop animasi untuk drag
-        prevTranslate = currentTranslate; // Simpan posisi translate saat ini sebelum drag
-        // Hentikan default behavior seperti scroll saat menyentuh/menekan
-        event.preventDefault();
+        animationID = requestAnimationFrame(animation);
+        container.style.cursor = 'grabbing';
+        container.classList.remove('transition-transform');
     }
 
-    function touchMove(event) {
-        if (!isDragging) return;
-        // Dapatkan posisi X saat ini
-        const currentClientX = event.type.includes('mouse') ? event.clientX : event.touches[0].clientX;
-        const deltaX = currentClientX - startPos; // Perubahan posisi X
-        currentTranslate = prevTranslate + deltaX; // Hitung posisi translate baru
-        setSliderTransform(currentTranslate); // Terapkan transform secara real-time
-    }
-
-    function touchEnd() {
-        isDragging = false;
-        cancelAnimationFrame(animationId); // Hentikan loop animasi
-
-        const movedBy = currentTranslate - prevTranslate; // Seberapa jauh digeser dari posisi awal drag
-
-        const visibleItems = getVisibleItems();
-        const gap = parseInt(window.getComputedStyle(container).columnGap) || 24;
-        const containerWidth = container.parentElement.offsetWidth;
-        const itemWidth = (containerWidth - gap * (visibleItems - 1)) / visibleItems;
-        const threshold = itemWidth / 4; // Ambang batas untuk menganggap sebagai "geser" ke item berikutnya (1/4 lebar item)
-
-        // Tentukan apakah harus berpindah indeks (snap to nearest item)
-        if (movedBy < -threshold && currentIndex < totalItems - visibleItems) {
-            // Geser ke kanan (maju)
-            currentIndex++;
-        } else if (movedBy > threshold && currentIndex > 0) {
-            // Geser ke kiri (mundur)
-            currentIndex--;
-        }
-
-        setPositionByIndex(); // Snap ke posisi indeks baru (dengan transisi)
-        container.style.cursor = 'grab'; // Kembalikan kursor
-    }
-
-    function animation() {
-        // Fungsi ini bisa digunakan untuk animasi yang lebih kompleks (misalnya, inersia)
-        // Untuk saat ini, transform langsung di set di touchMove.
-        // Fungsi ini memastikan bahwa requestAnimationFrame terus berjalan selama dragging.
+    function drag(event) {
         if (isDragging) {
-            requestAnimationFrame(animation);
+            const currentPosition = event.type.includes('mouse') ? event.clientX : event.touches[0].clientX;
+            currentTranslate = prevTranslate + currentPosition - startPos;
+            container.style.transform = `translateX(${currentTranslate}px)`;
         }
     }
 
-    // --- Memasang Event Listeners ---
-    container.addEventListener('mousedown', touchStart);
-    container.addEventListener('mouseup', touchEnd);
-    container.addEventListener('mouseleave', touchEnd); // Jika mouse keluar saat drag
-    container.addEventListener('mousemove', touchMove);
+    function dragEnd(event) {
+        if (!isDragging) return;
+        isDragging = false;
+        cancelAnimationFrame(animationID);
+        
+        const movedBy = currentTranslate - prevTranslate;
+        const itemWidth = items[0].offsetWidth;
+        const threshold = itemWidth / 4;
 
-    container.addEventListener('touchstart', touchStart);
-    container.addEventListener('touchend', touchEnd);
-    container.addEventListener('touchcancel', touchEnd); // Jika sentuhan dibatalkan
-    container.addEventListener('touchmove', touchMove);
-
-    // Mencegah pemilihan teks saat drag
-    container.style.userSelect = 'none';
-    // Mengatur kursor awal
-    container.style.cursor = 'grab';
-
-
-    // --- Event Listeners Tombol Navigasi ---
-    nextBtn.addEventListener("click", () => {
-        const visibleItems = getVisibleItems();
-        if (currentIndex < totalItems - visibleItems) {
-            currentIndex++;
-            setPositionByIndex();
+        if (movedBy < -threshold) {
+          slide(1);
+        } else if (movedBy > threshold) {
+            slide(-1);
         }
-    });
 
-    prevBtn.addEventListener("click", () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            setPositionByIndex();
-        }
-    });
+        container.classList.add('transition-transform');
+        setPositionByIndex();
+        container.style.cursor = 'grab';
+        prevTranslate = currentTranslate;
+    }
+    
+    function animation() {
+        if (isDragging) requestAnimationFrame(animation);
+    }
+    
+    container.addEventListener('mousedown', dragStart);
+    container.addEventListener('touchstart', dragStart, { passive: true });
+    
+    document.addEventListener('mouseup', dragEnd);
+    document.addEventListener('mouseleave', dragEnd);
+    document.addEventListener('touchend', dragEnd);
+    
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('touchmove', drag, { passive: true });
 
-    // --- Event Listener Resize Window ---
+    nextBtn.addEventListener("click", () => slide(1));
+    prevBtn.addEventListener("click", () => slide(-1));
+
     window.addEventListener("resize", () => {
-        const visibleItems = getVisibleItems();
-        // Pastikan currentIndex tidak keluar dari batas saat resize
-        if (currentIndex > totalItems - visibleItems) {
-            currentIndex = Math.max(0, totalItems - visibleItems);
-        }
-        setPositionByIndex(); // Sesuaikan posisi slider saat ukuran jendela berubah
+        container.classList.remove('transition-transform');
+        setPositionByIndex();
+        container.classList.add('transition-transform');
     });
 
-    // Panggil fungsi inisialisasi saat DOM selesai dimuat
     setPositionByIndex();
+    if(totalItems > getVisibleItems()) {
+      container.style.cursor = 'grab';
+    }
 });
 </script>

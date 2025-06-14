@@ -29,15 +29,16 @@ public function index()
     {
         // Ambil semua data wisata dari database
         // Jika Anda tidak menggunakan database, Anda bisa membuat array statis di sini
-        $paketWisataPopuler = PaketWisata::latest()->get();
+        $paketWisataPopuler = PaketWisata::oldest()->get();
 
         $paketUtama = $paketWisataPopuler->take(2); // Ambil 2 yang pertama
         $paketLainnya = $paketWisataPopuler->slice(2)->take(3);
         // Data untuk bagian Ulasan Pelanggan
         // Ambil ulasan terbaru, dengan user, dan filter yang punya komentar (opsional)
         $ulasanPelanggan = Ulasan::with('user')
+                                 ->where('rating', '>', 3)
                                  ->whereNotNull('komentar') // Hanya ulasan yang ada komentarnya
-                                 ->latest() // Urutkan dari terbaru
+                                 ->oldest() // Urutkan dari terbaru
                                  ->take(10) // Ambil 3 ulasan teratas untuk ditampilkan
                                  ->get();
 

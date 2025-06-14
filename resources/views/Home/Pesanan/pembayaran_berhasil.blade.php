@@ -1,6 +1,5 @@
 @extends('layouts.frontend_app') {{-- Menggunakan layout frontend Anda --}}
 @section('title', 'Pembayaran Berhasil!')
-
 @section('content')
 <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <div class="bg-white p-8 rounded-lg shadow-md text-center">

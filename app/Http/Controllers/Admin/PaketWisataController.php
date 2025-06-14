@@ -157,7 +157,7 @@ class PaketWisataController extends Controller
         // firstOrFail() akan melempar 404 jika tidak ditemukan, bagus untuk UX.
         $paket = PaketWisata::where('slug', $slug)
                             ->with(['ulasan' => function($query) {
-                                $query->with('user')->latest(); // Urutkan ulasan dari terbaru, dan eager load user
+                                $query->with('user')->oldest(); // Urutkan ulasan dari terbaru, dan eager load user
                             }])
                             ->firstOrFail();
 

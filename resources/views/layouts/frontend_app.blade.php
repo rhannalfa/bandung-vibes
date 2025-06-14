@@ -31,7 +31,6 @@
     </style>
 </head>
 <body>
-
     {{-- Header atau Navbar untuk Frontend (Anda bisa tambahkan komponen navbar di sini) --}}
     <header class="bg-white shadow-sm py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -67,6 +66,10 @@
     <footer class="bg-gray-800 text-white py-6 text-center text-sm mt-8">
         <p>&copy; {{ date('Y') }} Bandung Vibes. Semua Hak Dilindungi.</p>
     </footer>
+
+    <script src="/path/to/your/main.js"></script> {{-- Script utama Anda --}}
+    @stack('scripts') {{-- Tambahkan ini --}}
+
 
 </body>
 </html>

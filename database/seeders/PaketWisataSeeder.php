@@ -25,13 +25,15 @@ class PaketWisataSeeder extends Seeder
             'destinasi' => 'Tangkuban Perahu, Farmhouse Lembang, Floating Market, The Great Asia Africa',
             'durasi' => '1 Hari',
             'harga_paket' => 385000.00,
-            'gambar_utama' => 'paket-wisata/lembang-tangkuban-perahu.jpg',
+            // PATH BARU: Jalur relatif ke direktori 'public' (misal: public/assets/images/paket-wisata)
+            'gambar_utama' => 'assets/images/paket-wisata/lembang-tangkuban-perahu.jpg',
             'slug' => Str::slug('Pesona Lembang & Tangkuban Perahu'),
             'gambar_lainnya' => json_encode([
-                'paket-wisata/lainnya/lembang_1.jpg',
-                'paket-wisata/lainnya/lembang_2.jpg',
+                // PATH BARU: Jalur relatif ke direktori 'public'
+                'assets/images/paket-wisata/lainnya/lembang_1.jpg',
+                'assets/images/paket-wisata/lainnya/lembang_2.jpg',
             ]),
-            'fasilitas' => json_encode([ // <-- Hanya kolom 'fasilitas'
+            'fasilitas' => json_encode([
                 'Transportasi AC (Avanza/Xenia/Hiace)',
                 'Driver merangkap Pemandu Wisata',
                 'Tiket masuk seluruh destinasi',
@@ -47,11 +49,13 @@ class PaketWisataSeeder extends Seeder
             'destinasi' => 'Kawah Putih, Glamping Lakeside, Perkebunan Teh Rancabali, Ranca Upas',
             'durasi' => '1 Hari',
             'harga_paket' => 450000.00,
-            'gambar_utama' => 'paket-wisata/ciwidey-kawah-putih.jpg',
+            // PATH BARU: Jalur relatif ke direktori 'public'
+            'gambar_utama' => 'assets/images/paket-wisata/ciwidey-kawah-putih.jpg',
             'slug' => Str::slug('Petualangan Ciwidey & Kawah Putih'),
             'gambar_lainnya' => json_encode([
-                'paket-wisata/lainnya/ciwidey_1.jpg',
-                'paket-wisata/lainnya/ciwidey_2.jpg',
+                // PATH BARU: Jalur relatif ke direktori 'public'
+                'assets/images/paket-wisata/lainnya/ciwidey_1.jpg',
+                'assets/images/paket-wisata/lainnya/ciwidey_2.jpg',
             ]),
             'fasilitas' => json_encode([
                 'Transportasi AC',
@@ -68,11 +72,13 @@ class PaketWisataSeeder extends Seeder
             'destinasi' => 'Gedung Sate, Museum Konferensi Asia-Afrika, Jalan Braga, Alun-Alun Bandung',
             'durasi' => '1 Hari',
             'harga_paket' => 275000.00,
-            'gambar_utama' => 'paket-wisata/sejarah-kuliner-kota.jpg',
+            // PATH BARU: Jalur relatif ke direktori 'public'
+            'gambar_utama' => 'assets/images/paket-wisata/sejarah-kuliner-kota.jpg',
             'slug' => Str::slug('Jelajah Sejarah & Kuliner Kota'),
             'gambar_lainnya' => json_encode([
-                'paket-wisata/lainnya/kota_1.jpg',
-                'paket-wisata/lainnya/kota_2.jpg',
+                // PATH BARU: Jalur relatif ke direktori 'public'
+                'assets/images/paket-wisata/lainnya/kota_1.jpg',
+                'assets/images/paket-wisata/lainnya/kota_2.jpg',
             ]),
             'fasilitas' => json_encode([
                 'Transportasi AC',
@@ -89,11 +95,13 @@ class PaketWisataSeeder extends Seeder
             'destinasi' => 'Pemandian Air Panas Ciater, Kebun Teh Ciater',
             'durasi' => '1 Hari',
             'harga_paket' => 320000.00,
-            'gambar_utama' => 'paket-wisata/ciater-sari-ater.jpeg',
+            // PATH BARU: Jalur relatif ke direktori 'public'
+            'gambar_utama' => 'assets/images/paket-wisata/ciater-sari-ater.jpeg',
             'slug' => Str::slug('Relaksasi Ciater & Sari Ater'),
             'gambar_lainnya' => json_encode([
-                'paket-wisata/lainnya/ciater_1.jpg',
-                'paket-wisata/lainnya/ciater_2.jpg',
+                // PATH BARU: Jalur relatif ke direktori 'public'
+                'assets/images/paket-wisata/lainnya/ciater_1.jpg',
+                'assets/images/paket-wisata/lainnya/ciater_2.jpg',
             ]),
             'fasilitas' => json_encode([
                 'Transportasi AC',
@@ -108,7 +116,8 @@ class PaketWisataSeeder extends Seeder
             'destinasi' => 'Orchid Forest Cikole, The Lodge Maribaya, Dago Dreampark',
             'durasi' => '1 Hari',
             'harga_paket' => 410000.00,
-            'gambar_utama' => 'paket-wisata/instagramable-bandung.jpg',
+            // PATH BARU: Jalur relatif ke direktori 'public'
+            'gambar_utama' => 'assets/images/paket-wisata/instagramable-bandung.jpg',
             'slug' => Str::slug('Trip Instagramable Bandung'),
             'gambar_lainnya' => json_encode([]), // Tanpa gambar lainnya
             'fasilitas' => json_encode([

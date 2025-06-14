@@ -11,239 +11,130 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class=" font-sans antialiased >
+<body class="font-sans antialiased">
 
     <x-navbar /> {{-- Gunakan navbar yang sudah ada --}}
-<section class="relative mx-auto overflow-hidden flex flex-col z-0 sm:h-[60vh] md:h-[50vh] lg:h-[40vh]">
-    <img
-        id="hero-background-image" class="absolute inset-0 w-full h-full object-cover -z-20 transition-opacity duration-1000 ease-in-out"
-        src="
-            https://cdn.pixabay.com/photo/2022/06/25/17/51/bandung-city-7283934_1280.jpg
-        " alt="Bandung scenic background"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-brand-blue-dark/30 via-brand-blue-dark/50 to-brand-blue-dark/50 -z-20"></div>
 
-    <h2 class="absolute inset-0 flex justify-center items-center text-white font-extrabold text-[70px] xs:text-[80px] sm:text-[120px] md:text-[150px] opacity-20 select-none pointer-events-none -z-10 font-bandung-vibes-watermark">
-        BandungVibes
-    </h2>
-
-    <div class="relative flex flex-col flex-grow w-full items-center px-4 py-10 z-10 pt-32 pb-8 sm:pt-24 sm:pb-0 sm:justify-center " >
-    </div>
-    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-10">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-[60px] sm:h-[90px] md:h-[90px]">
-            <path d="M985.66,92.83C906.67,72,823.78,31.84,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="fill-white"></path>
-        </svg>
-    </div>
-</section>
-
-<section class="relative  py-16 sm:py-24">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16" data-aos="fade-out">
-            <h2 class="text-3xl sm:text-5xl font-bold text-dest-title">
-                Paket Wisata 1 Hari
-            </h2>
+    {{-- Hero Section --}}
+    <section class="relative mx-auto overflow-hidden flex flex-col z-0 sm:h-[60vh] md:h-[50vh] lg:h-[40vh]">
+        <img
+            id="hero-background-image" class="absolute inset-0 w-full h-full object-cover -z-20 transition-opacity duration-1000 ease-in-out"
+            src="https://cdn.pixabay.com/photo/2022/06/25/17/51/bandung-city-7283934_1280.jpg" alt="Bandung scenic background"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-blue-dark/30 via-brand-blue-dark/50 to-brand-blue-dark/50 -z-20"></div>
+        <h2 class="absolute inset-0 flex justify-center items-center text-white font-extrabold text-[70px] xs:text-[80px] sm:text-[120px] md:text-[150px] opacity-20 select-none pointer-events-none -z-10 font-bandung-vibes-watermark">
+            BandungVibes
+        </h2>
+        <div class="relative flex flex-col flex-grow w-full items-center px-4 py-10 z-10 pt-32 pb-8 sm:pt-24 sm:pb-0 sm:justify-center " >
         </div>
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-10">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-[60px] sm:h-[90px] md:h-[90px]">
+                <path d="M985.66,92.83C906.67,72,823.78,31.84,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="fill-white"></path>
+            </svg>
+        </div>
+    </section>
 
-        {{-- <div class="mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mb-12 md:mb-16" data-aos="fade-in">
+    {{-- Main Content Section --}}
+    <section class="relative py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16" data-aos="fade-out">
+                <h2 class="text-3xl sm:text-5xl font-bold text-dest-title">
+                    Paket Wisata Populer
+                </h2>
+            </div>
 
-            <div class="bg-subtle-gray rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group">
-                <div class="relative overflow-hidden">
-                    <img alt="Paket Pesona Bandung Utara" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out" src="https://imgs.search.brave.com/39AqTIIAmVCsQ8r5dOUYJEO6n7xxRpWWueR6qDFbtRo/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMy8w/My8xNi8xNS8zNy90/YW5na3ViYW4tcGVy/YWh1LTc4NTY5ODNf/NjQwLmpwZw"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div class="absolute top-4 right-4 bg-black/50 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-2">
-                        <i class="far fa-clock"></i>
-                        <span>Fullday Tour</span>
-                    </div>
-                </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-dest-title font-bold text-xl md:text-2xl group-hover:text-dest-button transition-colors">
-                            Paket Pesona Bandung Utara
-                        </h3>
-                        <div class="text-right flex-shrink-0 ml-4">
-                            <p class="text-xs text-text-muted">Mulai dari</p>
-                            <p class="font-extrabold text-xl text-dest-title">
-                                Rp 350.000
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10" data-aos="fade-in">
+                @forelse ($paketWisataPopuler as $paket)
+                    <div class="bg-subtle-gray rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group">
+                        <div class="relative overflow-hidden">
+                            {{-- ====================================================== --}}
+                            {{-- START: Logika Gambar Dinamis yang Ditingkatkan --}}
+                            {{-- ====================================================== --}}
+                            @php
+                                // Helper untuk mendapatkan URL gambar, baik dari storage maupun assets
+                                $getImageUrl = function($path) {
+                                    if (Str::startsWith($path, 'assets/images/')) {
+                                        return asset($path);
+                                    }
+                                    return Storage::url($path);
+                                };
+
+                                // Daftar gambar fallback dengan kata kunci
+                                $fallbackImages = [
+                                    'ciwidey' => 'assets/images/paket-wisata/lainnya/ciwidey_1.jpg',
+                                    'kawah-putih' => 'assets/images/paket-wisata/lainnya/ciwidey-kawah-putih.jpeg',
+                                    'kota' => 'assets/images/paket-wisata/lainnya/kota_1.jpeg',
+                                    'kuliner' => 'assets/images/paket-wisata/lainnya/sejarah-kuliner-kota.jpeg',
+                                    'ciater' => 'assets/images/paket-wisata/ciater-sari-ater.jpeg',
+                                    'sari-ater' => 'assets/images/paket-wisata/ciater-sari-ater.jpeg',
+                                ];
+
+                                $selectedFallback = null;
+                                $packageNameSlug = Str::slug($paket->nama_paket ?? '');
+
+                                // Cari gambar fallback yang cocok berdasarkan kata kunci
+                                foreach ($fallbackImages as $keyword => $imagePath) {
+                                    if (Str::contains($packageNameSlug, $keyword)) {
+                                        $selectedFallback = $imagePath;
+                                        break;
+                                    }
+                                }
+                            @endphp
+
+                            @if (!empty($paket->gambar_utama))
+                                {{-- Gunakan gambar utama jika ada --}}
+                                <img alt="{{ $paket->nama_paket }}" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ $getImageUrl($paket->gambar_utama) }}" />
+                            @elseif ($selectedFallback)
+                                {{-- Jika tidak, gunakan gambar fallback dinamis yang ditemukan --}}
+                                <img alt="{{ $paket->nama_paket ?? 'Gambar Default' }}" class="w-full h-60 object-cover" src="{{ asset($selectedFallback) }}" />
+                            @else
+                                {{-- Jika tidak ada sama sekali, gunakan placeholder --}}
+                                <img alt="Gambar Tidak Tersedia" class="w-full h-60 object-cover" src="https://via.placeholder.com/600x400?text=Image+Not+Available" />
+                            @endif
+                            {{-- ====================================================== --}}
+                            {{-- END: Logika Gambar Dinamis --}}
+                            {{-- ====================================================== --}}
+
+
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute top-4 right-4 bg-black/50 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-2">
+                                <i class="far fa-clock"></i>
+                                <span>{{ $paket->durasi ?? 'Fullday' }}</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="text-dest-title font-bold text-lg lg:text-xl mb-2 group-hover:text-dest-button transition-colors">
+                                {{ $paket->nama_paket }}
+                            </h3>
+                            <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+                                {{ Str::limit($paket->deskripsi_paket, 100) }}
                             </p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-text-muted leading-relaxed mb-4">
-                        Paket favorit untuk keluarga. Nikmati udara sejuk Lembang sambil menjelajahi destinasi alam, kreasi, dan kuliner paling hits.
-                    </p>
-                    <div class="text-sm text-dest-title space-y-2 mb-6 flex-grow">
-                        <p class="flex items-center"><i class="fas fa-check-circle text-dest-button mr-2.5"></i>Gunung Tangkuban Perahu</p>
-                        <p class="flex items-center"><i class="fas fa-check-circle text-dest-button mr-2.5"></i>The Great Asia Africa / Farmhouse</p>
-                        <p class="flex items-center"><i class="fas fa-check-circle text-dest-button mr-2.5"></i>Floating Market Lembang</p>
-                    </div>
-                    <button class="mt-auto w-full bg-dest-button text-white font-semibold px-6 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-dest-button-hover transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                        Lihat Detail <i class="fas fa-arrow-right text-xs ml-1"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="bg-subtle-gray rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group">
-                <div class="relative overflow-hidden">
-                    <img alt="Paket Eksotisme Bandung Selatan" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out" src="https://imgs.search.brave.com/0fRRCumesEtsxL4dbnHpSF9xQcs0XTqBygXvns_09RA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jbmMt/bWFnYXppbmUub3Jh/bWlsYW5kLmNvbS9w/YXJlbnRpbmcvaW1h/Z2VzL2dsYW1waW5n/LXJhbmNhYmFsaS53/aWR0aC04MDAuZm9y/bWF0LXdlYnAud2Vi/cA"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div class="absolute top-4 right-4 bg-black/50 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-2">
-                        <i class="far fa-clock"></i>
-                        <span>Fullday Tour</span>
-                    </div>
-                </div>
-                <div class="p-6 flex flex-col flex-grow">
-                     <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-dest-title font-bold text-xl md:text-2xl group-hover:text-dest-button transition-colors">
-                            Paket Eksotisme Bandung Selatan
-                        </h3>
-                        <div class="text-right flex-shrink-0 ml-4">
-                            <p class="text-xs text-text-muted">Mulai dari</p>
-                            <p class="font-extrabold text-xl text-dest-title">
-                                Rp 400.000
-                            </p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-text-muted leading-relaxed mb-4">
-                        Perjalanan magis ke surga selatan Bandung, memanjakan mata dengan danau vulkanik, kebun teh, dan suasana romantis.
-                    </p>
-                     <div class="text-sm text-dest-title space-y-2 mb-6 flex-grow">
-                        <p class="flex items-center"><i class="fas fa-check-circle text-dest-button mr-2.5"></i>Kawah Putih</p>
-                        <p class="flex items-center"><i class="fas fa-check-circle text-dest-button mr-2.5"></i>Glamping Lakeside (Resto Pinisi)</p>
-                        <p class="flex items-center"><i class="fas fa-check-circle text-dest-button mr-2.5"></i>Perkebunan Teh Rancabali</p>
-                    </div>
-                    <button class="mt-auto w-full bg-dest-button text-white font-semibold px-6 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-dest-button-hover transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                        Lihat Detail <i class="fas fa-arrow-right text-xs ml-1"></i>
-                    </button>
-                </div>
-            </div>
-        </div> --}}
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10" data-aos="fade-in">
-            @forelse ($paketWisataPopuler as $paket)
-
-            {{-- <div class="bg-subtle-gray rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group">
-                <div class="relative overflow-hidden">
-                    <img alt="Paket Jelajah Pusaka Kota" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                    src="
-                    https://cdn.pixabay.com/photo/2023/04/09/17/24/cukul-7911922_1280.jpg
-                    "/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div class="absolute top-4 right-4 bg-black/50 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-2">
-                        <i class="far fa-clock"></i>
-                        <span>Fullday Tour</span>
-                    </div>
-                </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <h3 class="text-dest-title font-bold text-lg lg:text-xl mb-2 group-hover:text-dest-button transition-colors">
-                        Paket Jelajah Pusaka Kota
-                    </h3>
-                    <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
-                        Susuri jejak "Paris van Java", ideal untuk pecinta arsitektur, sejarah, dan denyut nadi kota Bandung.
-                    </p>
-                    <div class="text-xs text-dest-title space-y-1.5 pt-2 border-t border-slate-200 flex-grow">
-                        <p class="flex items-center"><i class="fas fa-check text-dest-button/70 mr-2.5"></i>Gedung Sate & Museum Geologi</p>
-                        <p class="flex items-center"><i class="fas fa-check text-dest-button/70 mr-2.5"></i>Jalan Braga</p>
-                        <p class="flex items-center"><i class="fas fa-check text-dest-button/70 mr-2.5"></i>Alun-Alun Bandung</p>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-200 flex justify-between items-center">
-                         <div class="text-left">
-                            <p class="text-xs text-text-muted">Mulai dari</p>
-                            <p class="font-extrabold text-lg text-dest-title">Rp 150.000</p>
-                        </div>
-                        <button class="bg-dest-button text-white font-semibold px-4 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-dest-button-hover transition-all duration-300 transform hover:scale-105">
-                            Detail <i class="fas fa-arrow-right text-xs"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-subtle-gray rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group">
-                <div class="relative overflow-hidden">
-                    <img alt="Paket Harmoni Bandung Timur" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                    src="
-                        https://cdn.pixabay.com/photo/2023/04/09/17/24/cukul-7911922_1280.jpg
-                        "/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div class="absolute top-4 right-4 bg-black/50 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-2">
-                        <i class="far fa-clock"></i>
-                        <span>Fullday Tour</span>
-                    </div>
-                </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <h3 class="text-dest-title font-bold text-lg lg:text-xl mb-2 group-hover:text-dest-button transition-colors">
-                        Paket Harmoni Bandung Timur
-                    </h3>
-                    <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
-                        Rasakan sisi lain Bandung, memadukan kekayaan budaya Sunda otentik dengan pemandangan alam perbukitan.
-                    </p>
-                    <div class="text-xs text-dest-title space-y-1.5 pt-2 border-t border-slate-200 flex-grow">
-                        <p class="flex items-center"><i class="fas fa-check text-dest-button/70 mr-2.5"></i>Saung Angklung Udjo</p>
-                        <p class="flex items-center"><i class="fas fa-check text-dest-button/70 mr-2.5"></i>Bukit Moko (City View)</p>
-                        <p class="flex items-center"><i class="fas fa-check text-dest-button/70 mr-2.5"></i>Kuliner Khas Sunda</p>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-200 flex justify-between items-center">
-                         <div class="text-left">
-                            <p class="text-xs text-text-muted">Mulai dari</p>
-                            <p class="font-extrabold text-lg text-dest-title">Rp 275.000</p>
-                        </div>
-                        <button class="bg-dest-button text-white font-semibold px-4 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-dest-button-hover transition-all duration-300 transform hover:scale-105">
-                            Detail <i class="fas fa-arrow-right text-xs"></i>
-                        </button>
-                    </div>
-                </div>
-            </div> --}}
-
-
-
-            <div class="bg-subtle-gray rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group">
-                <div class="relative overflow-hidden">
-                    @if ($paket->gambar_utama)
-                        <img alt="{{ $paket->nama_paket }}" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                        src="{{ Storage::url($paket->gambar_utama) }}"/>
-                    @else
-                        <img alt="No Image" class="w-full h-72 object-cover" src="https://via.placeholder.com/600x400?text=No+Image"/>
-                    @endif
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div class="absolute top-4 right-4 bg-black/50 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-2">
-                        <i class="far fa-clock"></i>
-                        <span>{{ $paket->durasi ?? 'Tidak Ada Durasi' }}</span>
-                    </div>
-                </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <h3 class="text-dest-title font-bold text-lg lg:text-xl mb-2 group-hover:text-dest-button transition-colors">
-                        {{ $paket->nama_paket }}
-                    </h3>
-                    <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
-                        {{ Str::limit($paket->deskripsi_paket, 100) }}
-                    </p>
-                    <div class="text-xs text-dest-title space-y-1.5 pt-2 border-t border-slate-200 flex-grow">
-                        {{-- Anda mungkin perlu parse destinasi jika itu string koma-separated --}}
-                        {{-- Contoh sederhana: Tampilkan destinasi utama atau beberapa yang pertama --}}
-                        {{-- <p class="flex items-center"><i class="fas fa-check-circle text-dest-button mr-2.5"></i>{{ $paket->destinasi }}</p> --}}
-                        {{-- Jika destinasi adalah list, Anda perlu memparsingnya, misalnya dengan explode(',') --}}
-                        @foreach(explode(',', $paket->destinasi) as $dest)
-                            <p class="flex items-center"><i class="fas fa-check-circle text-dest-button mr-2.5"></i>{{ trim($dest) }}</p>
-                        @endforeach                  </div>
-                     <div class="mt-4 pt-4 border-t border-slate-200 flex justify-between items-center">
-                         <div class="text-left">
-                            <p class="text-xs text-text-muted">Mulai dari</p>
-                            <p class="font-extrabold text-lg text-dest-title">Rp {{ number_format($paket->harga_paket, 0, ',', '.') }} {{-- Tampilkan Harga Paket --}}</p>
-                        </div>
-                        <button class="bg-dest-button text-white font-semibold px-4 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-dest-button-hover transition-all duration-300 transform hover:scale-105">
-                                <a href="{{ route('detail-paket', $paket->slug) }}"">
-                                    Lihat Detail
+                            <div class="text-xs text-dest-title space-y-1.5 pt-2 border-t border-slate-200 flex-grow">
+                                {{-- Loop untuk menampilkan destinasi --}}
+                                @foreach(explode(',', $paket->destinasi) as $index => $dest)
+                                    @if($index < 3) {{-- Batasi hanya 3 destinasi yang ditampilkan --}}
+                                        <p class="flex items-center truncate"><i class="fas fa-check text-dest-button/70 mr-2.5"></i>{{ trim($dest) }}</p>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-200 flex justify-between items-center">
+                                <div class="text-left">
+                                    <p class="text-xs text-text-muted">Mulai dari</p>
+                                    <p class="font-extrabold text-lg text-dest-title">Rp {{ number_format($paket->harga_paket, 0, ',', '.') }}</p>
+                                </div>
+                                <a href="{{ route('detail-paket', $paket->slug) }}" class="bg-dest-button text-white font-semibold px-4 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-dest-button-hover transition-all duration-300 transform hover:scale-105">
+                                    <span>Lihat Detail</span>
+                                    <i class="fas fa-arrow-right text-xs"></i>
                                 </a>
-                            <i class="fas fa-arrow-right text-xs"></i>
-                        </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                @empty
+                    <p class="col-span-full text-center text-gray-500">Belum ada paket wisata tersedia.</p>
+                @endforelse
             </div>
-            @empty
-               <p class="col-span-full text-center text-gray-500">Belum ada paket wisata tersedia.</p>
-           @endforelse
-
         </div>
-    </div>
-</section>
+    </section>
 
     <x-footer /> {{-- Gunakan footer yang sudah ada --}}
 

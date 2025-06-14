@@ -109,7 +109,7 @@
                 </div>
             </div>
             @empty
-                <p class="col-span-full text-center text-gray-500">Belum ada paket wisata utama yang tersedia.</p>
+                <p class="col-span-full text-center text-gray-500">Belum ada paket wi utama yang tersedia.</p>
             @endforelse
         </div>
 
@@ -132,12 +132,12 @@
                         {{-- Jika tidak ada gambar utama, gunakan gambar dari resources/assets/images sebagai fallback --}}
                         @php
                             $fallbackImages = [
-                                'assets/images/paket-wi/lainnya/ciwidey_1.jpg',
-                                'assets/images/paket-wi/lainnya/ciwidey_2.jpg',
-                                'assets/images/paket-wi/lainnya/kota_1.jpeg',
+                                'assets/images/paket-wisata/lainnya/ciwidey_1.jpg',
+                                'assets/images/paket-wisata/lainnya/ciwidey_2.jpg',
+                                'assets/images/paket-wisata/lainnya/kota_1.jpeg',
                                 'assets/images/paket-wisata/ciater-sari-ater.jpeg',
-                                'assets/images/paket-wi/lainnya/ciwidey-kawah-putih.jpeg',
-                                'assets/images/paket-wi/lainnya/sejarah-kuliner-kota.jpeg',
+                                'assets/images/paket-wisata/lainnya/ciwidey-kawah-putih.jpeg',
+                                'assets/images/paket-wisata/lainnya/sejarah-kuliner-kota.jpeg',
                             ];
                             $displayFallbackImage = !empty($fallbackImages) ? $fallbackImages[0] : null;
                         @endphp

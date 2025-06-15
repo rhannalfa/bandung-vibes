@@ -5,31 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Detail Paket: {{ $paket->nama_paket }}</title>
+    <link rel="icon" href="{{ asset('images/icon.png') }}" type="image/x-icon">
 
-    {{-- Memuat aset CSS dan JS menggunakan Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    {{-- Memuat Font Awesome dari CDN --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    {{-- Memuat font Inter dari Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* Menggunakan font Inter untuk tampilan yang bersih dan modern */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8f9fa; /* Warna latar belakang netral */
         }
-        /* Style untuk sidebar yang tetap (sticky) di samping */
         .sticky-sidebar {
             position: -webkit-sticky; /* Untuk kompatibilitas Safari */
             position: sticky;
             top: 2rem; /* Jarak dari atas viewport saat sticky */
         }
-        /* Definisi warna kustom (pastikan ini sesuai dengan tailwind.config.js Anda, atau hapus jika sudah didefinisikan di sana) */
         .text-dest-title { color: #212529; } /* Dark Gray */
         .text-text-muted { color: #6c757d; } /* Muted Gray */
         .bg-dest-button { background-color: #fd7e14; } /* Orange */
@@ -37,7 +30,6 @@
         .bg-subtle-gray { background-color: #f1f3f5; } /* Light Gray */
         .border-orange-200 { border-color: #ffc299; } /* Light Orange */
 
-        /* Styles for the rating stars input */
         .rating-stars {
             display: inline-flex;
             direction: rtl; /* To make stars fill from right to left */
@@ -64,9 +56,8 @@
 <body>
 
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    {{-- Breadcrumbs dan Judul Halaman --}}
     <div class="mb-8">
-        <nav class="text-sm font-medium text-slate-500 mb-2">
+        <nav class="text-sm font-medium text-slate-500 mb-2" data-aos="fade-right">
             <a href="{{ route('home') }}" class="hover:text-orange-500 transition-colors">Home</a>
             <span class="mx-2">/</span>
             <a href="{{ route('wisata.index') }}" class="hover:text-orange-500 transition-colors">Paket Wisata</a>
@@ -74,55 +65,42 @@
             <span class="text-slate-800">Detail Paket</span>
         </nav>
         <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-            <h1 class="text-3xl lg:text-4xl font-extrabold text-slate-800 tracking-tight">
+            <h1 class="text-3xl lg:text-4xl font-extrabold text-slate-800 tracking-tight" data-aos="fade-right">
                 {{ $paket->nama_paket }} {{-- Nama paket wisata dinamis --}}
             </h1>
-            <div class="flex items-center gap-2 mt-2 md:mt-0 bg-slate-100 text-slate-700 text-sm font-semibold px-4 py-2 rounded-lg shadow-sm">
+            <div class="flex items-center gap-2 mt-2 md:mt-0 bg-slate-100 text-slate-700 text-sm font-semibold px-4 py-2 rounded-lg shadow-sm" data-aos="fade-left">
                 <i class="far fa-clock"></i>
                 <span>{{ $paket->durasi ?? 'Durasi Tidak Tersedia' }}</span> {{-- Durasi paket dinamis --}}
             </div>
         </div>
     </div>
 
-    {{-- Konten Utama (Detail dan Fasilitas) --}}
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-        {{-- Kolom Kiri (Galeri dan Deskripsi) --}}
         <div class="lg:col-span-2">
-            {{-- Galeri Gambar Dinamis --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8" data-aos="fade-in">
                 @php
-                    // Helper function to determine the correct image URL
-                    // If the path starts with 'assets/images/', use asset() (for seeder data in public folder)
-                    // Otherwise (e.g., 'paket-wisata/image.jpg' from Storage), use Storage::url()
                     $getImageUrl = function($path) {
                         if (\Illuminate\Support\Str::startsWith($path, 'assets/images/')) {
                             return asset($path);
                         }
-                        // Pastikan path untuk Storage::url() tidak dimulai dengan '/' jika sudah ada
-                        // Storage::url() akan menambahkan /storage/ secara otomatis
                         return Storage::url(ltrim($path, '/'));
                     };
 
-                    // Mendekode gambar_lainnya dengan robust
                     $gambarLainnyaArray = [];
                     if (!empty($paket->gambar_lainnya)) {
-                        // Jika sudah array (karena model cast) langsung pakai
                         if (is_array($paket->gambar_lainnya)) {
                             $gambarLainnyaArray = $paket->gambar_lainnya;
                         } elseif (is_string($paket->gambar_lainnya)) {
-                            // Coba decode JSON, jika gagal atau bukan array, fallback ke explode
                             $decoded = json_decode($paket->gambar_lainnya, true);
                             if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
                                 $gambarLainnyaArray = $decoded;
                             } else {
-                                // Fallback jika string tidak valid JSON tapi mungkin koma-separated
                                 $gambarLainnyaArray = array_filter(explode(',', $paket->gambar_lainnya));
                             }
                         }
                     }
                 @endphp
 
-                {{-- Gambar Utama --}}
                 <div class="col-span-1 sm:col-span-2 rounded-2xl overflow-hidden shadow-lg group">
                     @if ($paket->gambar_utama)
                         <img alt="{{ $paket->nama_paket }}" class="object-cover w-full h-96 group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ $getImageUrl($paket->gambar_utama) }}" />
@@ -131,7 +109,6 @@
                     @endif
                 </div>
 
-                {{-- Gambar Lainnya --}}
                 @if (count($gambarLainnyaArray) > 0)
                     @foreach ($gambarLainnyaArray as $gambar_path)
                         <div class="rounded-2xl overflow-hidden shadow-lg group">
@@ -141,32 +118,21 @@
                 @endif
             </div>
 
-            {{-- Bagian Tentang Paket Ini --}}
-            <div class="bg-white p-6 rounded-2xl shadow-sm mb-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm mb-8" data-aos="fade-out">
                 <h2 class="text-2xl font-bold text-slate-800 mb-4">Tentang Paket Ini</h2>
                 <p class="text-slate-600 leading-relaxed mb-6 text-justify">{{ $paket->deskripsi_paket }}</p> {{-- Deskripsi paket dinamis --}}
 
                 <h3 class="font-bold text-slate-800 text-lg mb-4 pt-4 border-t border-slate-200">Destinasi Utama</h3>
                 <div class="space-y-3 text-slate-700">
-                    {{-- Destinasi dinamis (dipecah dari string koma-separated) --}}
                     @foreach(array_filter(explode(',', $paket->destinasi)) as $destinasi)
                         <p class="flex items-center"><i class="fas fa-check-circle text-orange-500/80 mr-3"></i>{{ trim($destinasi) }}</p>
                     @endforeach
                 </div>
             </div>
 
-            {{-- Bagian Rencana Perjalanan (Itinerary/Rundown) - Dikomentari karena tidak digunakan saat ini --}}
-            {{-- Jika Anda ingin menambahkan ini di masa depan, Anda perlu kolom 'itinerary' di DB dan mengelola input JSON-nya --}}
-            {{--
-            <div class="bg-white p-6 rounded-2xl shadow-sm">
-                <h2 class="text-2xl font-bold text-slate-800 mb-6">Rencana Perjalanan</h2>
-                <p class="text-slate-500 text-center">Rencana perjalanan belum tersedia untuk paket ini.</p>
-            </div>
-            --}}
         </div>
 
-        {{-- Kolom Kanan (Harga dan Fasilitas) --}}
-        <div class="lg:col-span-1">
+        <div class="lg:col-span-1" data-aos="fade-out">
             <div class="sticky-sidebar bg-white p-6 rounded-2xl shadow-lg border border-slate-200">
                 {{-- Harga Paket --}}
                 <div class="text-center mb-6">
@@ -179,19 +145,15 @@
                     <h4 class="font-semibold text-slate-800 mb-3">Fasilitas:</h4> {{-- Judul Fasilitas --}}
                     <ul class="space-y-2 text-sm text-slate-600">
                         @php
-                            // Mendekode fasilitas dengan robust
                             $fasilitasArray = [];
                             if (!empty($paket->fasilitas)) {
-                                // Jika sudah array (karena model cast) langsung pakai
                                 if (is_array($paket->fasilitas)) {
                                     $fasilitasArray = $paket->fasilitas;
                                 } elseif (is_string($paket->fasilitas)) {
-                                    // Coba decode JSON, jika gagal atau bukan array, fallback ke explode
                                     $decoded = json_decode($paket->fasilitas, true);
                                     if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
                                         $fasilitasArray = $decoded;
                                     } else {
-                                        // Fallback jika string tidak valid JSON tapi mungkin baris baru-separated
                                         $fasilitasArray = array_filter(explode("\n", $paket->fasilitas));
                                     }
                                 }
@@ -209,7 +171,6 @@
 
                 {{-- Tombol Pesan Sekarang --}}
                 <button class="w-full bg-orange-500 text-white font-bold px-6 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-orange-500/30">
-                    {{-- UBAH INI JADI LINK --}}
                     <a href="{{ route('pesanan.create', $paket->id) }}" class="w-full h-full flex items-center justify-center">
                         Pesan Sekarang
                     </a>
@@ -219,10 +180,9 @@
     </div>
 
 {{-- Bagian Ulasan dan Rating yang Disempurnakan --}}
-<div class="mt-12">
+<div class="mt-12" data-aos="fade-out">
     <h2 class="text-3xl font-extrabold text-slate-800 mb-6 tracking-tight">Ulasan & Rating Pengguna</h2>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {{-- Kolom Kiri: Ringkasan Rating dan Form Ulasan --}}
         <div class="lg:col-span-1">
             <div class="bg-white p-6 rounded-2xl shadow-lg sticky top-4">
                 <h3 class="text-xl font-bold text-slate-800 mb-4">Ringkasan Ulasan</h3>
@@ -290,7 +250,6 @@
 
         {{-- Kolom Kanan: Daftar Ulasan dan Form --}}
         <div class="lg:col-span-2">
-            {{-- Form Ulasan Baru (Hanya jika login dan belum review) --}}
             @auth
                 @if (!$hasReviewed)
                     <div id="formUlasan" class="bg-white p-6 rounded-2xl shadow-lg mb-8">
@@ -340,7 +299,6 @@
         <div class="space-y-8">
             @forelse ($paket->ulasan->sortByDesc('created_at') as $ulasan)
                 <div class="flex gap-4">
-                    {{-- Avatar Pengguna --}}
                     <div class="flex-shrink-0">
                         <img class="h-12 w-12 rounded-full object-cover" src="https://ui-avatars.com/api/?name={{ urlencode($ulasan->user->name ?? 'U') }}&background=random&color=fff" alt="{{ $ulasan->user->name ?? 'User' }}">
                     </div>
@@ -374,6 +332,7 @@
     </div>
 </div>
 </main>
+<x-footer />
 
 </body>
 </html>

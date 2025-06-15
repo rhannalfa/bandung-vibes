@@ -88,14 +88,6 @@ html {
     border: 2px solid #F3F4F6;
   }
 
-
-/* ... CSS Tailwind bawaan Anda ... */
-
-/* ====== KODE EFEK KILAU (SHIMMER EFFECT) ====== */
-
-/* Buat pseudo-element ::after pada container gambar.
-  Container ini adalah div yang memiliki class 'relative' dan 'overflow-hidden'.
-*/
 .group .relative.overflow-hidden::after {
   content: '';
   position: absolute;

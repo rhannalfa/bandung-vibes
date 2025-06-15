@@ -1,8 +1,8 @@
 @extends('layouts.frontend_app') {{-- Asumsi Anda punya layout frontend --}}
 @section('title', 'Pesanan Berhasil!')
-
+<link rel="icon" href="{{ asset('images/icon.png') }}" type="image/x-icon">
 @section('content')
-<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10" data-aos="fade-in">
     <div class="bg-white p-8 rounded-lg shadow-md text-center">
         <div class="text-green-500 text-6xl mb-4">
             <i class="fas fa-check-circle"></i>

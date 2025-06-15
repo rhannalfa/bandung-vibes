@@ -1,9 +1,10 @@
-{{-- resources/views/frontend/pesanan/history.blade.php --}}
 @extends('layouts.frontend_app') {{-- Menggunakan layout frontend Anda --}}
 @section('title', 'Riwayat Pesanan Saya')
+<link rel="icon" href="{{ asset('images/icon.png') }}" type="image/x-icon">
 
 @section('content')
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mb-32 mt-3 ">
+<link rel="icon" href="{{ asset('images/icon.png') }}" type="image/x-icon">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mb-32 mt-3 " data-aos="fade-in">
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h1 class="text-2xl font-bold text-gray-800 mb-6">Riwayat Pesanan Saya</h1>
 

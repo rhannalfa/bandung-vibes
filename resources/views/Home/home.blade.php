@@ -7,7 +7,7 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+    <link rel="icon" href="{{ asset('images/icon.png') }}" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -22,12 +22,12 @@
     <div class="absolute inset-0 bg-gradient-to-b from-brand-blue-dark/30 via-brand-blue-dark/50 to-brand-blue-dark/50 -z-20"></div>
 
     <h2 class="absolute inset-0 flex justify-center items-center text-white font-extrabold text-[70px] xs:text-[80px] sm:text-[120px] md:text-[150px] opacity-20 select-none pointer-events-none -z-10 font-bandung-vibes-watermark">
-        BandungVibes
+        BandungVibes 
     </h2>
 
     <div class="relative flex flex-col flex-grow w-full items-center px-4 py-10 z-10 pt-32 pb-8 sm:pt-24 sm:pb-0 sm:justify-center " >
 
-        <div class="flex flex-col items-center text-center w-full max-w-3xl mb-12 sm:mb-0" data-aos="fade-out">
+        <div class="flex flex-col items-center text-center w-full max-w-3xl mb-12 sm:mb-0" data-aos="fade-in">
             <span class="text-brand-orange font-semibold text-sm md:text-base tracking-widest mb-4 uppercase block">
                 Bandung Vibes
             </span>
@@ -114,7 +114,7 @@
             </a>
         </div>
 
-        <button aria-label="Play video" class="hidden sm:flex bg-white/30 hover:bg-white/40 backdrop-blur-sm rounded-full w-20 h-20 items-center justify-center transition-transform transform hover:scale-110 shadow-lg">
+        <button id="play-video-btn" aria-label="Play video" class="hidden sm:flex bg-white/30 hover:bg-white/40 backdrop-blur-sm rounded-full w-20 h-20 items-center justify-center transition-transform transform hover:scale-110 shadow-lg">
             <svg aria-hidden="true" class="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z"></path>
             </svg>
@@ -123,15 +123,32 @@
     </div>
 </section>
 
+<div id="video-modal" class="fixed inset-0 bg-black bg-opacity-70 flex-col items-center justify-center z-50 hidden">
+    <div class="relative bg-black w-full max-w-3xl rounded-lg shadow-lg">
+        <button id="close-modal-btn" class="absolute -top-10 right-0 text-white text-3xl hover:text-gray-300">&times;</button>
+        <div class="relative" style="padding-top: 56.25%;"> <iframe id="youtube-player" class="absolute top-0 left-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
 <x-ulasan :ulasanPelanggan="$ulasanPelanggan" />
     <x-footer />
 
     <script>
+        const YOUTUBE_VIDEO_ID =  'MmbG3fKn04Q';
         document.addEventListener('DOMContentLoaded', function () {
+            const playButton = document.getElementById('play-video-btn');
+        const videoModal = document.getElementById('video-modal');
+        const closeModalButton = document.getElementById('close-modal-btn');
+        const youtubePlayer = document.getElementById('youtube-player');
+
+        const videoUrl = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0`;
+
             const imageUrls = [
                 "https://imgs.search.brave.com/kpkrmY4VmbA-PwjOVX6mDQ-D3ahPCOUmtq-ytKQM-1Y/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbmZv/YmFuZHVuZ2tvdGEu/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDI0LzEwL1Bob3Rv/LV8tby1jcmVhdGl2/ZS1Qb2RvbW9yby1w/YXJrLnBuZw",
                 "https://imgs.search.brave.com/AWwOFv6qkc_0Bk6nPydJRw2XZ49Ye8IBzM39xOAYdFI/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQw/MjM1ODEwMy9pZC9m/b3RvL24tZ2VkdW5n/LWktZXNjb21wdG8t/bS1pLWotc2FsYWgt/c2F0dS1iYW5ndW5h/bi1iZXJzZWphcmFo/LWRpLWJhbmR1bmct/bGFuc2thcC1uaWVz/Y29tcHRvbXkuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPWoz/Vmt1blhpMnZSdm8t/SGFwVTFTUDUtTXpP/TU9HY2NRczBLUEJz/QnJfM3c9"
             ];
+
             const heroImageElement = document.getElementById('hero-background-image');
             let currentImageIndex = 0;
 
@@ -151,6 +168,40 @@
             } else {
                 console.error("Elemen dengan ID 'hero-background-image' tidak ditemukan.");
             }
+
+            // Fungsi untuk membuka modal
+        function openModal() {
+            youtubePlayer.src = videoUrl;
+            videoModal.classList.remove('hidden');
+            videoModal.classList.add('flex');
+        }
+
+        // Fungsi untuk menutup modal
+        function closeModal() {
+            videoModal.classList.add('hidden');
+            videoModal.classList.remove('flex');
+            // Hentikan video dengan menghapus src
+            youtubePlayer.src = '';
+        }
+
+        // Event listener untuk tombol play
+        if (playButton) {
+            playButton.addEventListener('click', openModal);
+        }
+
+        // Event listener untuk tombol close
+        if (closeModalButton) {
+            closeModalButton.addEventListener('click', closeModal);
+        }
+        
+        // Event listener untuk menutup modal saat mengklik area gelap di luar video
+        if (videoModal) {
+            videoModal.addEventListener('click', function(event) {
+                if (event.target === videoModal) {
+                    closeModal();
+                }
+            });
+        }
         });
     </script>
 

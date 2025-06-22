@@ -3,7 +3,7 @@
 @section('content')
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h3 class="text-lg font-semibold mb-4">Selamat datang di Panel Admin Bandung Vibes!</h3>
-        <p class="text-gray-700">Di sini Anda dapat mengelola data **paket wisata**, melihat riwayat transaksi pembayaran, dan lainnya.</p>
+        {{-- <p class="text-gray-700">Di sini Anda dapat mengelola data **paket wisata**, melihat riwayat transaksi pembayaran, dan lainnya.</p> --}}
     </div>
 
     {{-- Statistik ringkas, nanti akan diisi dari controller --}}
@@ -13,8 +13,12 @@
             <p class="text-3xl font-bold text-blue-600">{{ $totalPaketWisata ?? 0 }}</p>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-md">
-            <h4 class="text-md font-semibold mb-2">Total Transaksi</h4>
-            <p class="text-3xl font-bold text-green-600">{{ $totalTransaksi ?? 0 }}</p>
+            <h4 class="text-md font-semibold mb-2">Total Pesanan</h4>
+            <p class="text-3xl font-bold text-green-600">{{ $totalPesanan ?? 0 }}</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-md font-semibold mb-2">Total Ulasan</h4>
+            <p class="text-3xl font-bold text-green-600">{{ $totalUlasan ?? 0 }}</p>
         </div>
         {{-- Tambahkan statistik lain yang relevan --}}
     </div>

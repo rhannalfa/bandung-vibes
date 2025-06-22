@@ -1,391 +1,186 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bandung Vibes - Project Overview</title>
-    <!-- Chosen Palette: Warm Orange & Neutral Gray -->
-    <!-- Application Structure Plan: The SPA uses a tabbed navigation interface (Overview, Tech Stack, Installation, Architecture) to break down the README content into manageable, thematic sections. This is more user-friendly than a long, single-scroll page. The 'Installation' section is an interactive accordion, making the step-by-step process easier to follow. The 'Architecture' section uses HTML/CSS diagrams to visually clarify the project's complex dual-source image handling, a key concept from the source report. -->
-    <!-- Visualization & Content Choices:
-    - Report Info: Project Features -> Goal: Inform -> Presentation: Icon + Text Cards -> Interaction: Hover -> Justification: Visually scannable summary.
-    - Report Info: Technology Stack -> Goal: Inform -> Presentation: Icon + Text Cards -> Justification: More engaging than a bulleted list.
-    - Report Info: Installation Steps -> Goal: Instruct/Guide -> Presentation: Interactive Accordion -> Interaction: Click to expand, copy code -> Justification: Breaks down a complex process into focused steps, reducing cognitive load.
-    - Report Info: Image Management Logic -> Goal: Explain/Clarify -> Presentation: HTML/CSS Flowchart Diagram -> Justification: Visually explains a complex technical concept that is central to the project, which is more effective than text alone.
-    - CONFIRMATION: NO SVG/Mermaid used. Icons are from Font Awesome CDN. Diagrams are pure HTML/CSS. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .tab-link.active {
-            border-color: #fd7e14;
-            color: #fd7e14;
-            background-color: #fff;
-        }
-        .accordion-header.open .accordion-icon {
-            transform: rotate(180deg);
-        }
-    </style>
-</head>
-<body class="text-gray-800">
+# Bandung Vibes
 
-    <div class="container mx-auto p-4 sm:p-6 md:p-8">
-        
-        <header class="text-center mb-8">
-            <h1 class="text-5xl font-extrabold text-gray-900">Bandung Vibes</h1>
-            <p class="mt-2 text-lg text-gray-600">Interactive Project Overview</p>
-        </header>
 
-        <!-- Tab Navigation -->
-        <div class="mb-8 border-b border-gray-200">
-            <nav class="flex flex-wrap -mb-px" id="tab-nav">
-                <a href="#overview" class="tab-link active text-lg font-semibold py-4 px-6 border-b-2 border-transparent hover:text-orange-500 hover:border-orange-500 transition-colors duration-300">Overview</a>
-                <a href="#tech-stack" class="tab-link text-lg font-semibold py-4 px-6 border-b-2 border-transparent hover:text-orange-500 hover:border-orange-500 transition-colors duration-300">Tech Stack</a>
-                <a href="#installation" class="tab-link text-lg font-semibold py-4 px-6 border-b-2 border-transparent hover:text-orange-500 hover:border-orange-500 transition-colors duration-300">Installation</a>
-                <a href="#architecture" class="tab-link text-lg font-semibold py-4 px-6 border-b-2 border-transparent hover:text-orange-500 hover:border-orange-500 transition-colors duration-300">Architecture</a>
-            </nav>
-        </div>
+"Bandung Vibes" adalah aplikasi web berbasis Laravel yang dirancang untuk mengelola dan menampilkan paket-paket wisata menarik di Bandung. Proyek ini memfokuskan pada **pengelolaan data paket wisata** secara komprehensif, termasuk detail, harga, durasi, destinasi, fasilitas, dan galeri gambar dinamis, guna memberikan pengalaman pengguna yang intuitif dan menarik.
 
-        <!-- Tab Content -->
-        <main id="tab-content">
-            <!-- Overview Section -->
-            <section id="overview" class="tab-pane">
-                <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <h2 class="text-3xl font-bold mb-4">Project Overview</h2>
-                    <p class="text-gray-700 leading-relaxed mb-8">Aplikasi web berbasis Laravel untuk mengelola dan menampilkan paket-paket wisata di Bandung, dirancang untuk memberikan pengalaman pengguna yang menarik dan intuitif. Proyek ini memfokuskan pada pengelolaan data paket wisata, termasuk detail, harga, durasi, destinasi, fasilitas, dan galeri gambar dinamis.</p>
-                    
-                    <h3 class="text-2xl font-bold mb-6">Fitur Utama</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-gray-50 p-6 rounded-lg hover:shadow-md hover:scale-105 transition-all duration-300">
-                            <i class="fas fa-cogs text-3xl text-orange-500 mb-3"></i>
-                            <h4 class="font-bold text-lg">Manajemen Paket</h4>
-                            <p class="text-gray-600 text-sm">CRUD lengkap untuk paket wisata melalui panel admin.</p>
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-lg hover:shadow-md hover:scale-105 transition-all duration-300">
-                            <i class="fas fa-desktop text-3xl text-orange-500 mb-3"></i>
-                            <h4 class="font-bold text-lg">Frontend Responsif</h4>
-                            <p class="text-gray-600 text-sm">Tampilan daftar dan detail paket yang menarik di semua perangkat.</p>
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-lg hover:shadow-md hover:scale-105 transition-all duration-300">
-                            <i class="fas fa-images text-3xl text-orange-500 mb-3"></i>
-                            <h4 class="font-bold text-lg">Gambar Fleksibel</h4>
-                            <p class="text-gray-600 text-sm">Mendukung gambar dari seeder dan upload admin secara dinamis.</p>
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-lg hover:shadow-md hover:scale-105 transition-all duration-300">
-                            <i class="fas fa-star text-3xl text-orange-500 mb-3"></i>
-                            <h4 class="font-bold text-lg">Sistem Ulasan</h4>
-                            <p class="text-gray-600 text-sm">Pengguna dapat memberi rating dan komentar pada setiap paket.</p>
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-lg hover:shadow-md hover:scale-105 transition-all duration-300">
-                            <i class="fas fa-database text-3xl text-orange-500 mb-3"></i>
-                            <h4 class="font-bold text-lg">Struktur Data</h4>
-                            <p class="text-gray-600 text-sm">Menggunakan Eloquent `casts` untuk data JSON seperti fasilitas.</p>
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-lg hover:shadow-md hover:scale-105 transition-all duration-300">
-                            <i class="fas fa-link text-3xl text-orange-500 mb-3"></i>
-                            <h4 class="font-bold text-lg">URL SEO-Friendly</h4>
-                            <p class="text-gray-600 text-sm">Menggunakan slug untuk URL yang bersih dan mudah dibaca.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+## Fitur Utama
 
-            <!-- Tech Stack Section -->
-            <section id="tech-stack" class="tab-pane hidden">
-                 <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <h2 class="text-3xl font-bold mb-8 text-center">Tumpukan Teknologi</h2>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 text-center">
-                        <div class="p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                            <i class="fab fa-laravel text-6xl text-red-500"></i>
-                            <p class="mt-2 font-semibold">Laravel</p>
-                        </div>
-                        <div class="p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                            <i class="fab fa-php text-6xl text-indigo-500"></i>
-                            <p class="mt-2 font-semibold">PHP</p>
-                        </div>
-                         <div class="p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                            <i class="fas fa-database text-6xl text-blue-600"></i>
-                            <p class="mt-2 font-semibold">MySQL</p>
-                        </div>
-                        <div class="p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                             <div class="text-6xl text-green-500">
-                                <i class="fas fa-leaf"></i>
-                            </div>
-                            <p class="mt-2 font-semibold">Blade</p>
-                        </div>
-                        <div class="p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                             <div class="text-6xl text-cyan-500">
-                                <i class="fab fa-css3-alt"></i><span class="text-4xl">+</span><i class="fab fa-js"></i>
-                            </div>
-                            <p class="mt-2 font-semibold">Tailwind CSS</p>
-                        </div>
-                         <div class="p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                            <i class="fab fa-js-square text-6xl text-yellow-500"></i>
-                            <p class="mt-2 font-semibold">JavaScript</p>
-                        </div>
-                        <div class="p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                             <div class="text-6xl text-purple-500">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <p class="mt-2 font-semibold">Vite</p>
-                        </div>
-                        <div class="p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                            <i class="fab fa-font-awesome text-6xl text-sky-500"></i>
-                            <p class="mt-2 font-semibold">Font Awesome</p>
-                        </div>
-                    </div>
-                 </div>
-            </section>
+### Manajemen Paket Wisata
+* **CRUD** (Create, Read, Update, Delete) paket wisata melalui panel admin yang intuitif.
+* Kolom data mencakup: **nama paket, deskripsi, destinasi, durasi, harga, gambar utama, gambar galeri (lainnya),** dan **fasilitas**.
 
-            <!-- Installation Section -->
-            <section id="installation" class="tab-pane hidden">
-                <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <h2 class="text-3xl font-bold mb-6">Panduan Instalasi</h2>
-                    <div id="accordion-container" class="space-y-4">
-                        <!-- Step 1 -->
-                        <div class="accordion-item border border-gray-200 rounded-lg">
-                            <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center hover:bg-gray-50 transition-colors">
-                                <span>1. Clone Repositori</span>
-                                <i class="fas fa-chevron-down accordion-icon transition-transform"></i>
-                            </button>
-                            <div class="accordion-content hidden p-4 border-t border-gray-200">
-                                <p class="text-gray-600 mb-3">Gunakan perintah ini untuk mengunduh proyek ke komputer lokal Anda.</p>
-                                <div class="bg-gray-900 text-white p-3 rounded-md flex justify-between items-center font-mono text-sm">
-                                    <pre><code>git clone &lt;URL_REPOSITORI_ANDA&gt;
-cd bandung-vibes</code></pre>
-                                    <button class="copy-btn text-gray-400 hover:text-white" title="Copy to clipboard"><i class="far fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Step 2 -->
-                        <div class="accordion-item border border-gray-200 rounded-lg">
-                            <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center hover:bg-gray-50 transition-colors">
-                                <span>2. Instal Dependensi Composer</span>
-                                <i class="fas fa-chevron-down accordion-icon transition-transform"></i>
-                            </button>
-                            <div class="accordion-content hidden p-4 border-t border-gray-200">
-                                <p class="text-gray-600 mb-3">Perintah ini akan menginstal semua paket PHP yang dibutuhkan oleh Laravel.</p>
-                                <div class="bg-gray-900 text-white p-3 rounded-md flex justify-between items-center font-mono text-sm">
-                                    <pre><code>composer install</code></pre>
-                                    <button class="copy-btn text-gray-400 hover:text-white" title="Copy to clipboard"><i class="far fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Step 3 -->
-                        <div class="accordion-item border border-gray-200 rounded-lg">
-                            <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center hover:bg-gray-50 transition-colors">
-                                <span>3. Siapkan File Environment</span>
-                                <i class="fas fa-chevron-down accordion-icon transition-transform"></i>
-                            </button>
-                            <div class="accordion-content hidden p-4 border-t border-gray-200">
-                                <p class="text-gray-600 mb-3">Salin file `.env.example` menjadi `.env` dan buat kunci aplikasi.</p>
-                                <div class="bg-gray-900 text-white p-3 rounded-md flex justify-between items-center font-mono text-sm">
-                                    <pre><code>cp .env.example .env
-php artisan key:generate</code></pre>
-                                    <button class="copy-btn text-gray-400 hover:text-white" title="Copy to clipboard"><i class="far fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Step 4 -->
-                        <div class="accordion-item border border-gray-200 rounded-lg">
-                            <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center hover:bg-gray-50 transition-colors">
-                                <span>4. Konfigurasi & Jalankan Database</span>
-                                <i class="fas fa-chevron-down accordion-icon transition-transform"></i>
-                            </button>
-                            <div class="accordion-content hidden p-4 border-t border-gray-200">
-                                <p class="text-gray-600 mb-3">Atur koneksi database di file `.env`, lalu jalankan migrasi dan seeder.</p>
-                                <div class="bg-gray-900 text-white p-3 rounded-md flex justify-between items-center font-mono text-sm">
-                                    <pre><code>php artisan migrate:fresh --seed</code></pre>
-                                    <button class="copy-btn text-gray-400 hover:text-white" title="Copy to clipboard"><i class="far fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Step 5 -->
-                        <div class="accordion-item border border-gray-200 rounded-lg">
-                            <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center hover:bg-gray-50 transition-colors">
-                                <span>5. Buat Symlink Storage</span>
-                                <i class="fas fa-chevron-down accordion-icon transition-transform"></i>
-                            </button>
-                            <div class="accordion-content hidden p-4 border-t border-gray-200">
-                                <p class="text-gray-600 mb-3">Ini penting agar gambar yang diunggah dapat diakses dari web.</p>
-                                <div class="bg-gray-900 text-white p-3 rounded-md flex justify-between items-center font-mono text-sm">
-                                    <pre><code>php artisan storage:link</code></pre>
-                                    <button class="copy-btn text-gray-400 hover:text-white" title="Copy to clipboard"><i class="far fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Step 6 -->
-                        <div class="accordion-item border border-gray-200 rounded-lg">
-                            <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center hover:bg-gray-50 transition-colors">
-                                <span>6. Instal & Jalankan Aset Frontend</span>
-                                <i class="fas fa-chevron-down accordion-icon transition-transform"></i>
-                            </button>
-                            <div class="accordion-content hidden p-4 border-t border-gray-200">
-                                <p class="text-gray-600 mb-3">Instal paket NPM dan jalankan Vite untuk pengembangan.</p>
-                                <div class="bg-gray-900 text-white p-3 rounded-md flex justify-between items-center font-mono text-sm">
-                                    <pre><code>npm install
-npm run dev</code></pre>
-                                    <button class="copy-btn text-gray-400 hover:text-white" title="Copy to clipboard"><i class="far fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Step 7 -->
-                        <div class="accordion-item border border-gray-200 rounded-lg">
-                            <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center hover:bg-gray-50 transition-colors">
-                                <span>7. Jalankan Server Lokal</span>
-                                <i class="fas fa-chevron-down accordion-icon transition-transform"></i>
-                            </button>
-                            <div class="accordion-content hidden p-4 border-t border-gray-200">
-                                <p class="text-gray-600 mb-3">Proyek Anda sekarang siap diakses!</p>
-                                <div class="bg-gray-900 text-white p-3 rounded-md flex justify-between items-center font-mono text-sm">
-                                    <pre><code>php artisan serve</code></pre>
-                                    <button class="copy-btn text-gray-400 hover:text-white" title="Copy to clipboard"><i class="far fa-copy"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Architecture Section -->
-            <section id="architecture" class="tab-pane hidden">
-                <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <h2 class="text-3xl font-bold mb-6">Arsitektur & Konsep Kunci</h2>
-                    <p class="text-gray-700 leading-relaxed mb-8">Salah satu aspek terpenting dari proyek ini adalah manajemen gambar yang fleksibel. Sistem ini dirancang untuk menangani gambar dari dua sumber berbeda secara mulus: gambar statis dari seeder untuk data awal, dan gambar dinamis yang diunggah oleh admin.</p>
-                    
-                    <h3 class="text-2xl font-bold mb-6 text-center">Alur Manajemen Gambar</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Diagram 1: Seeder Images -->
-                        <div class="border-2 border-dashed border-green-300 p-6 rounded-lg">
-                            <h4 class="font-bold text-xl mb-4 text-center">1. Gambar dari Seeder (Aset Statis)</h4>
-                            <div class="flex flex-col items-center space-y-4 text-sm">
-                                <div class="bg-green-100 p-3 rounded-md w-full text-center">
-                                    <i class="fas fa-code mr-2"></i>
-                                    Seeder: `gambar_utama' => 'assets/images/...'`
-                                </div>
-                                <i class="fas fa-arrow-down text-2xl text-green-500"></i>
-                                <div class="bg-green-100 p-3 rounded-md w-full text-center">
-                                    <i class="fas fa-database mr-2"></i>
-                                    Database menyimpan path relatif ke `public`
-                                </div>
-                                <i class="fas fa-arrow-down text-2xl text-green-500"></i>
-                                <div class="bg-green-100 p-3 rounded-md w-full text-center">
-                                    <i class="fas fa-folder-open mr-2"></i>
-                                    Gambar fisik berada di `public/assets/images/`
-                                </div>
-                                <i class="fas fa-arrow-down text-2xl text-green-500"></i>
-                                <div class="bg-green-100 p-3 rounded-md w-full text-center">
-                                    <i class="fab fa-laravel mr-2"></i>
-                                    Blade: `asset('assets/images/...')`
-                                </div>
-                            </div>
-                        </div>
+### Tampilan Frontend yang Responsif
+* Halaman daftar paket wisata yang **menarik** dan **mudah dinavigasi**.
+* Halaman detail paket wisata dengan **informasi lengkap** dan **galeri gambar dinamis**.
 
-                        <!-- Diagram 2: Uploaded Images -->
-                        <div class="border-2 border-dashed border-blue-300 p-6 rounded-lg">
-                            <h4 class="font-bold text-xl mb-4 text-center">2. Gambar dari Upload Admin</h4>
-                            <div class="flex flex-col items-center space-y-4 text-sm">
-                                <div class="bg-blue-100 p-3 rounded-md w-full text-center">
-                                    <i class="fas fa-upload mr-2"></i>
-                                    Admin mengunggah gambar via form
-                                </div>
-                                <i class="fas fa-arrow-down text-2xl text-blue-500"></i>
-                                <div class="bg-blue-100 p-3 rounded-md w-full text-center">
-                                    <i class="fas fa-database mr-2"></i>
-                                    Database menyimpan path relatif ke `storage`
-                                </div>
-                                <i class="fas fa-arrow-down text-2xl text-blue-500"></i>
-                                <div class="bg-blue-100 p-3 rounded-md w-full text-center">
-                                    <i class="fas fa-hdd mr-2"></i>
-                                    Gambar fisik berada di `storage/app/public/`
-                                </div>
-                                <i class="fas fa-arrow-down text-2xl text-blue-500"></i>
-                                <div class="bg-blue-100 p-3 rounded-md w-full text-center">
-                                    <i class="fab fa-laravel mr-2"></i>
-                                    Blade: `Storage::url('path/dari/db')`
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+### Pengelolaan Gambar Fleksibel
+* Mendukung **gambar *dummy* dari *seeder*** (disimpan di `public/assets/images`).
+* Mendukung **gambar yang diunggah melalui admin** (disimpan di `storage/app/public`).
+* **Logika pintar di Blade** untuk memuat gambar dari sumber yang tepat, memastikan tampilan yang konsisten.
 
-                    <div class="mt-10 pt-6 border-t">
-                         <h3 class="text-2xl font-bold mb-4">Struktur Data JSON</h3>
-                         <p class="text-gray-700 leading-relaxed mb-4">Untuk fleksibilitas, kolom `gambar_lainnya` dan `fasilitas` menggunakan `casts` array di Model Eloquent. Data ini disimpan sebagai JSON di database, memungkinkan penyimpanan daftar item yang dinamis tanpa perlu tabel relasi tambahan.</p>
-                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-sm">
-                            <div class="bg-gray-900 text-white p-4 rounded-md">
-                                <p class="text-gray-400 mb-2">// Contoh data 'fasilitas' di database:</p>
-                                <pre><code>["Transportasi AC", "Pemandu Lokal", "Tiket Masuk"]</code></pre>
-                            </div>
-                             <div class="bg-gray-900 text-white p-4 rounded-md">
-                                <p class="text-gray-400 mb-2">// Contoh data 'gambar_lainnya':</p>
-                                <pre><code>["paket-wisata/lainnya/img_1.jpg", "paket-wisata/lainnya/img_2.jpg"]</code></pre>
-                            </div>
-                         </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+### Sistem Ulasan (Review)
+* Pengguna yang **terautentikasi** dapat memberikan **rating bintang** dan **komentar** untuk setiap paket wisata.
+* Menampilkan daftar ulasan yang komprehensif untuk setiap paket, menambah kredibilitas dan informasi bagi calon wisatawan.
 
-    </div>
+### Struktur Data Terorganisir
+* Menggunakan **Laravel Eloquent ORM** dengan `casts` untuk kolom array (seperti `gambar_lainnya` dan `fasilitas`), memastikan integritas dan kemudahan pengelolaan data.
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const tabs = document.querySelectorAll('.tab-link');
-            const panes = document.querySelectorAll('.tab-pane');
+### SEO-Friendly URLs
+* Menggunakan **slug** untuk URL paket wisata agar lebih mudah dibaca, diingat, dan diindeks oleh mesin pencari.
 
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function (event) {
-                    event.preventDefault();
+## Teknologi yang Digunakan
 
-                    tabs.forEach(item => item.classList.remove('active'));
-                    panes.forEach(pane => pane.classList.add('hidden'));
+* **Backend:**
+    * PHP 8.x
+    * Laravel 10.x
+* **Database:**
+    * MySQL (atau SQLite, PostgreSQL)
+* **Frontend:**
+    * Blade (Templating Engine Laravel)
+    * Tailwind CSS (Framework CSS untuk styling cepat dan responsif)
+    * JavaScript (ES6+)
+    * Vite (Bundler aset untuk kompilasi CSS dan JS)
+* **Lain-lain:**
+    * Font Awesome (untuk ikon)
+    * Google Fonts (Inter)
 
-                    this.classList.add('active');
-                    const targetPane = document.querySelector(this.getAttribute('href'));
-                    targetPane.classList.remove('hidden');
-                });
-            });
+---
 
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const content = header.nextElementSibling;
-                    header.classList.toggle('open');
-                    content.classList.toggle('hidden');
-                });
-            });
+## Instalasi dan Setup Proyek
 
-            const copyButtons = document.querySelectorAll('.copy-btn');
-            copyButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const pre = button.previousElementSibling;
-                    const code = pre.innerText;
+Ikuti langkah-langkah di bawah ini untuk menginstal dan menjalankan proyek "Bandung Vibes" di lingkungan lokal Anda.
 
-                    const textarea = document.createElement('textarea');
-                    textarea.value = code;
-                    document.body.appendChild(textarea);
-                    textarea.select();
-                    try {
-                         document.execCommand('copy');
-                         const originalIcon = button.innerHTML;
-                         button.innerHTML = '<i class="fas fa-check text-green-500"></i>';
-                         setTimeout(() => {
-                             button.innerHTML = originalIcon;
-                         }, 2000);
-                    } catch (err) {
-                        console.error('Failed to copy: ', err);
-                    }
-                    document.body.removeChild(textarea);
-                });
-            });
-        });
-    </script>
+### 1. Clone Repositori
 
-</body>
-</html>
+```bash
+git clone https://github.com/rhannalfa/bandung-vibes.git
+cd bandung-vibes
+````
+
+### 2\. Instal Dependensi Composer
+
+```bash
+composer install
+```
+
+### 3\. Salin File `.env` dan Buat Kunci Aplikasi
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+### 4\. Konfigurasi Database
+
+Buka file `.env` dan sesuaikan pengaturan database Anda:
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=bandung_vibes_db # Ganti dengan nama database Anda
+DB_USERNAME=root             # Ganti dengan username database Anda
+DB_PASSWORD=                 # Ganti dengan password database Anda
+```
+
+### 5\. Jalankan Migrasi Database dan Seeder
+
+Ini akan membuat tabel-tabel database dan mengisi data *dummy*, termasuk paket wisata dan *path* gambarnya.
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+> **Penting:** Perintah ini akan menghapus semua data dan struktur tabel yang ada, lalu menjalankannya ulang.
+
+### 6\. Buat Symlink untuk Storage (Wajib untuk Gambar Upload)
+
+```bash
+php artisan storage:link
+```
+
+Ini membuat *symlink* dari `public/storage` ke `storage/app/public`, memungkinkan gambar yang diunggah melalui admin dapat diakses publik.
+
+### 7\. Instal Dependensi NPM dan Kompilasi Aset Frontend
+
+```bash
+npm install
+npm run dev  # Untuk mode pengembangan dengan hot-reloading
+# atau
+# npm run build # Untuk kompilasi aset produksi
+```
+
+> **Penting:** Jika Anda memiliki gambar *dummy* di `public/assets/images` yang langsung diakses oleh *seeder*, pastikan gambar tersebut secara fisik ada di lokasi `public/assets/images/paket-wisata/` dan `public/assets/images/paket-wisata/lainnya/` setelah menjalankan `npm run dev` / `npm run build`. Anda mungkin perlu menyalinnya secara manual ke `public` jika tidak ada *plugin* Vite/Mix yang mengelolanya.
+
+### 8\. Jalankan Server Laravel
+
+```bash
+php artisan serve
+```
+
+Aplikasi akan tersedia di `http://127.0.0.1:8000` (atau port lain yang ditentukan).
+
+-----
+
+## Penggunaan Aplikasi
+
+### Halaman Beranda / Daftar Paket Wisata
+
+Akses `http://127.0.0.1:8000/paket-wisata` untuk melihat daftar paket wisata.
+
+### Halaman Detail Paket Wisata
+
+Klik salah satu paket dari daftar, atau akses langsung melalui *slug*, contoh: `http://127.0.0.1:8000/paket-wisata/pesona-lembang-tangkuban-perahu`.
+
+### Panel Admin (Kelola Paket Wisata)
+
+Akses `http://127.0.0.1:8000/admin/paket-wisata` (sesuaikan rute admin Anda jika berbeda). Anda mungkin perlu membuat pengguna admin dan mengimplementasikan otentikasi admin.
+
+-----
+
+## Struktur Folder Penting
+
+  * `app/Models/PaketWisata.php`: Definisi model Eloquent untuk paket wisata.
+  * `app/Http/Controllers/Admin/PaketWisataController.php`: Logika *backend* untuk manajemen paket wisata (CRUD).
+  * `app/Http/Controllers/PaketWisataController.php`: (Jika ada) Logika *backend* untuk tampilan *frontend* (daftar & detail).
+  * `database/seeders/PaketWisataSeeder.php`: Data *dummy* untuk mengisi tabel `paket_wisata`.
+  * `resources/views/`: Direktori untuk file Blade *template* (`home/wisata/paket-wisata-detail.blade.php`, `admin/paket-wisata/index.blade.php`, dll.).
+  * `public/assets/images/`: Direktori ini akan berisi gambar-gambar yang diakses langsung oleh *seeder* (static assets) setelah proses `npm run dev/build` atau disalin manual.
+  * `storage/app/public/`: Direktori tempat gambar yang diunggah melalui panel admin akan disimpan. Diakses melalui *symlink* `public/storage`.
+  * `routes/web.php`: Definisi rute web aplikasi.
+  * `vite.config.js`: Konfigurasi untuk Vite, termasuk bagaimana aset *frontend* (CSS, JS, dan gambar jika disalin) diproses.
+
+-----
+
+## Catatan Penting Mengenai Gambar
+
+Proyek ini menangani gambar dari dua sumber utama:
+
+### 1\. Gambar dari Seeder (Aset Statis)
+
+  * *Path* disimpan di *database* dengan format seperti `assets/images/paket-wisata/gambar.jpg`.
+  * Secara fisik, file-file ini diharapkan berada di `public/assets/images/paket-wisata/` (atau sub-direktorinya).
+  * Di Blade, gambar ini diakses menggunakan *helper* `{{ asset($path_gambar) }}`.
+  * **Pastikan Anda menyalin file-file ini ke `public/assets/images` secara manual atau melalui konfigurasi aset bundler Anda (Vite/Laravel Mix).**
+
+### 2\. Gambar yang Diunggah (Melalui Admin Panel)
+
+  * *Path* disimpan di *database* dengan format relatif terhadap `storage/app/public/` (misalnya: `paket-wisata/nama-unik.jpg`).
+  * Secara fisik, file-file ini berada di `storage/app/public/paket-wisata/`.
+  * Di Blade, gambar ini diakses menggunakan *helper* `{{ Storage::url($path_gambar) }}`.
+  * **Pastikan `php artisan storage:link` telah dijalankan untuk membuat *symlink* `public/storage`.**
+
+### Logika di Blade
+
+Dalam Blade *template* (`paket_terpopuler_bandung_blade` dan `detail_paket_wisata_blade`), terdapat fungsi *helper* PHP *inline* (`$getImageUrl`) yang secara cerdas menentukan apakah *path* gambar dimulai dengan `assets/images/` (lalu menggunakan `asset()`) atau tidak (lalu menggunakan `Storage::url()`). Ini memungkinkan satu kode untuk menangani kedua skenario sumber gambar.
+
+-----
+
+Dibuat dengan ❤️ oleh rhannalfa dan bantuan dari Gemini.
+
+```
+
+---
+
+Semoga membantu ya, Han! Jika ada hal lain yang bisa saya bantu, beritahu saja.
+```

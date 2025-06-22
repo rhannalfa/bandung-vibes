@@ -1,13 +1,11 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
-{{-- Anda bisa menambahkan link Font Awesome jika belum ada di layout utama --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-{{-- Tambahkan Google Fonts jika belum ada di layout utama --}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="{{ asset('images/icon.png') }}" type="image/x-icon">
 
 <style>
-    /* Definisi warna kustom jika Anda belum mendefinisikannya di tailwind.config.js */
     .text-dest-title { color: #212529; } /* Dark Gray */
     .text-text-muted { color: #6c757d; } /* Muted Gray */
     .bg-dest-button { background-color: #fd7e14; } /* Orange */
@@ -29,14 +27,11 @@
         </div>
 
         {{-- Dua kartu utama --}}
-        <div class="mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mb-12 md:mb-16" data-aos="fade-in">
+        <div class="mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mb-12 md:mb-16">
             @forelse ($paketUtama as $paket)
-            <div class="paket-card relative bg-white rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group">
+            <div class="paket-card relative bg-white rounded-xl border border-transparent overflow-hidden flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-orange-200 group" data-aos="fade-in">
                 <div class="relative overflow-hidden">
                     @php
-                        // Fungsi helper untuk menentukan URL gambar
-                        // Jika path gambar dimulai dengan 'assets/images/', gunakan asset()
-                        // Jika tidak (berarti dari Storage, seperti 'paket-wisata/gambar.jpg'), gunakan Storage::url()
                         $getImageUrl = function($path) {
                             if (Str::startsWith($path, 'assets/images/')) {
                                 return asset($path);
@@ -47,7 +42,8 @@
 
                     {{-- Tampilkan gambar utama jika ada --}}
                     @if ($paket->gambar_utama)
-                        <img alt="{{ $paket->nama_paket }}" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out" src="{{ $getImageUrl($paket->gambar_utama) }}"/>
+                        <img alt="{{ $paket->nama_paket }}" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out" 
+                        src="{{ $getImageUrl($paket->gambar_utama) }}"/>
                     @else
                         {{-- Jika tidak ada gambar utama, ambil gambar dari resources/assets/images sebagai fallback --}}
                         @php

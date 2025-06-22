@@ -1,6 +1,3 @@
-{{-- resources/views/components/ulasan.blade.php --}}
-
-{{-- Bagian Ulasan Pelanggan Dinamis dengan Slider --}}
 <section class="bg-gray-50 max-w-full py-16" data-aos="fade-up">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-6">
@@ -11,9 +8,6 @@
         </h2>
         <div class="relative px-12">
             <div id="testimonial-wrapper" class="overflow-hidden">
-                {{-- ========================================================================= --}}
-                {{-- DIUBAH: Class 'xl:' dihapus agar maksimal 3 ulasan --}}
-                {{-- ========================================================================= --}}
                 <div id="testimonial-container" class="grid grid-flow-col auto-cols-[90%] sm:auto-cols-[calc(50%-12px)] lg:auto-cols-[calc(33.3333%-16px)] gap-6 transition-transform duration-500 ease-in-out">
                     @forelse ($ulasanPelanggan as $ulasan)
                         <article class="bg-white border border-gray-200 rounded-2xl shadow-lg p-6 flex flex-col testimonial-item group transform hover:scale-105 transition-transform duration-300 cursor-grab">
@@ -72,9 +66,6 @@
     </div>
 </section>
 
-{{-- ========================================================================= --}}
-{{-- DIUBAH: Script JavaScript dengan fungsi getVisibleItems yang disederhanakan --}}
-{{-- ========================================================================= --}}
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const wrapper = document.getElementById("testimonial-wrapper");
@@ -97,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let prevTranslate = 0;
     let animationID;
     
-    // FUNGSI INI DIUBAH - Kondisi untuk 4 item dihapus
     function getVisibleItems() {
         if (window.innerWidth >= 1024) return 3; // Layar LG ke atas (3 ulasan)
         if (window.innerWidth >= 640) return 2;  // Layar SM (2 ulasan)
@@ -144,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function () {
         setPositionByIndex();
     }
 
-    // --- Sisa JavaScript tidak ada perubahan ---
     function dragStart(event) {
         if (totalItems <= getVisibleItems()) return;
         isDragging = true;

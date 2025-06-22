@@ -2,9 +2,7 @@
 @section('title', 'Pesan Paket: ' . $paket_wisata->nama_paket)
 
 @push('styles')
-{{-- Jika Anda butuh CSS tambahan khusus halaman ini --}}
 <style>
-    /* Membuat input number tidak menampilkan panah default */
     input[type='number']::-webkit-inner-spin-button,
     input[type='number']::-webkit-outer-spin-button {
         -webkit-appearance: none;

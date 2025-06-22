@@ -177,10 +177,3 @@ Dalam Blade *template* (`paket_terpopuler_bandung_blade` dan `detail_paket_wisat
 -----
 
 Dibuat dengan ❤️ oleh rhannalfa dan bantuan dari Gemini.
-
-```
-
----
-
-Semoga membantu ya, Han! Jika ada hal lain yang bisa saya bantu, beritahu saja.
-```
